@@ -235,7 +235,7 @@ the patient id.</p>
 </pre></td>
 <td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="c">// Create signs</span>
 <span class="k">let</span> <span onmouseout="hideTip(event, 'fs22', 53)" onmouseover="showTip(event, 'fs22', 53)" class="f">createSign</span> <span onmouseout="hideTip(event, 'fs23', 54)" onmouseover="showTip(event, 'fs23', 54)" class="f">c</span> <span onmouseout="hideTip(event, 'fs24', 55)" onmouseover="showTip(event, 'fs24', 55)" class="i">s</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs24', 56)" onmouseover="showTip(event, 'fs24', 56)" class="i">s</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs23', 57)" onmouseover="showTip(event, 'fs23', 57)" class="f">c</span>
-<span class="k">let</span> <span onmouseout="hideTip(event, 'fs25', 58)" onmouseover="showTip(event, 'fs25', 58)" class="f">createBloodPressure</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs22', 59)" onmouseover="showTip(event, 'fs22', 59)" class="f">createSign</span> <span onmouseout="hideTip(event, 'fs4', 60)" onmouseover="showTip(event, 'fs4', 60)" class="p">BloodPressure</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs25', 58)" onmouseover="showTip(event, 'fs25', 58)" class="f">createBloodPressure</span>     <span class="o">=</span> <span onmouseout="hideTip(event, 'fs22', 59)" onmouseover="showTip(event, 'fs22', 59)" class="f">createSign</span> <span onmouseout="hideTip(event, 'fs4', 60)" onmouseover="showTip(event, 'fs4', 60)" class="p">BloodPressure</span>
 <span class="k">let</span> <span onmouseout="hideTip(event, 'fs26', 61)" onmouseover="showTip(event, 'fs26', 61)" class="f">createPainScore</span>         <span class="o">=</span> <span onmouseout="hideTip(event, 'fs22', 62)" onmouseover="showTip(event, 'fs22', 62)" class="f">createSign</span> <span onmouseout="hideTip(event, 'fs6', 63)" onmouseover="showTip(event, 'fs6', 63)" class="p">PainScore</span>
 <span class="k">let</span> <span onmouseout="hideTip(event, 'fs27', 64)" onmouseover="showTip(event, 'fs27', 64)" class="f">createLiverFailure</span>      <span class="o">=</span> <span onmouseout="hideTip(event, 'fs22', 65)" onmouseover="showTip(event, 'fs22', 65)" class="f">createSign</span> <span onmouseout="hideTip(event, 'fs7', 66)" onmouseover="showTip(event, 'fs7', 66)" class="p">LiverFailure</span>
 <span class="k">let</span> <span onmouseout="hideTip(event, 'fs28', 67)" onmouseover="showTip(event, 'fs28', 67)" class="f">createCentralVenousLine</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs22', 68)" onmouseover="showTip(event, 'fs22', 68)" class="f">createSign</span> <span onmouseout="hideTip(event, 'fs9', 69)" onmouseover="showTip(event, 'fs9', 69)" class="p">CentralVenousLine</span>
@@ -262,9 +262,9 @@ the patient id.</p>
 <span class="l">6: </span>
 </pre></td>
 <td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="c">// Create a patient</span>
-<span class="k">let</span> <span onmouseout="hideTip(event, 'fs34', 82)" onmouseover="showTip(event, 'fs34', 82)" class="i">pat</span> <span class="o">=</span> <span class="s">&quot;Test Patient&quot;</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs20', 83)" onmouseover="showTip(event, 'fs20', 83)" class="f">createPatient</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs34', 82)" onmouseover="showTip(event, 'fs34', 82)" class="i">testPat</span> <span class="o">=</span> <span class="s">&quot;Test Patient&quot;</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs20', 83)" onmouseover="showTip(event, 'fs20', 83)" class="f">createPatient</span>
 <span class="c">// Create patient signs for that patient</span>
-<span class="k">let</span> <span onmouseout="hideTip(event, 'fs35', 84)" onmouseover="showTip(event, 'fs35', 84)" class="i">patsigns</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs34', 85)" onmouseover="showTip(event, 'fs34', 85)" class="i">pat</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs29', 86)" onmouseover="showTip(event, 'fs29', 86)" class="f">createPatienSigns</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs35', 84)" onmouseover="showTip(event, 'fs35', 84)" class="i">patsigns</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs34', 85)" onmouseover="showTip(event, 'fs34', 85)" class="i">testPat</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs29', 86)" onmouseover="showTip(event, 'fs29', 86)" class="f">createPatienSigns</span>
 
 <span onmouseout="hideTip(event, 'fs36', 87)" onmouseover="showTip(event, 'fs36', 87)" class="f">printfn</span> <span class="s">&quot;</span><span class="pf">%A</span><span class="s">&quot;</span> <span onmouseout="hideTip(event, 'fs35', 88)" onmouseover="showTip(event, 'fs35', 88)" class="i">patsigns</span>
 </code></pre></td>
@@ -283,17 +283,41 @@ the patient id.</p>
 <span class="l">10: </span>
 <span class="l">11: </span>
 <span class="l">12: </span>
+<span class="l">13: </span>
+<span class="l">14: </span>
+<span class="l">15: </span>
+<span class="l">16: </span>
+<span class="l">17: </span>
+<span class="l">18: </span>
+<span class="l">19: </span>
+<span class="l">20: </span>
+<span class="l">21: </span>
+<span class="l">22: </span>
+<span class="l">23: </span>
+<span class="l">24: </span>
 </pre></td>
 <td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="c">// Create targets</span>
 <span class="k">let</span> <span onmouseout="hideTip(event, 'fs37', 89)" onmouseover="showTip(event, 'fs37', 89)" class="f">createTarget</span> <span onmouseout="hideTip(event, 'fs38', 90)" onmouseover="showTip(event, 'fs38', 90)" class="f">f</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs38', 91)" onmouseover="showTip(event, 'fs38', 91)" class="f">f</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs12', 92)" onmouseover="showTip(event, 'fs12', 92)" class="p">Target</span>
 <span class="c">// Create treatment targets</span>
-<span class="k">let</span> <span onmouseout="hideTip(event, 'fs39', 93)" onmouseover="showTip(event, 'fs39', 93)" class="f">createBloodPressureTarget</span> <span onmouseout="hideTip(event, 'fs40', 94)" onmouseover="showTip(event, 'fs40', 94)" class="f">pred</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs37', 95)" onmouseover="showTip(event, 'fs37', 95)" class="f">createTarget</span> (<span class="k">fun</span> <span onmouseout="hideTip(event, 'fs32', 96)" onmouseover="showTip(event, 'fs32', 96)" class="i">sgn</span> <span class="k">-&gt;</span> <span class="k">match</span> <span onmouseout="hideTip(event, 'fs32', 97)" onmouseover="showTip(event, 'fs32', 97)" class="i">sgn</span> <span class="k">with</span> | <span onmouseout="hideTip(event, 'fs4', 98)" onmouseover="showTip(event, 'fs4', 98)" class="p">BloodPressure</span> <span onmouseout="hideTip(event, 'fs41', 99)" onmouseover="showTip(event, 'fs41', 99)" class="i">bp</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs41', 100)" onmouseover="showTip(event, 'fs41', 100)" class="i">bp</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs40', 101)" onmouseover="showTip(event, 'fs40', 101)" class="f">pred</span> | _ <span class="k">-&gt;</span> <span class="k">true</span>)
-<span class="k">let</span> <span onmouseout="hideTip(event, 'fs42', 102)" onmouseover="showTip(event, 'fs42', 102)" class="f">createPainScoreTarget</span> <span onmouseout="hideTip(event, 'fs40', 103)" onmouseover="showTip(event, 'fs40', 103)" class="f">pred</span>     <span class="o">=</span> <span onmouseout="hideTip(event, 'fs37', 104)" onmouseover="showTip(event, 'fs37', 104)" class="f">createTarget</span> (<span class="k">fun</span> <span onmouseout="hideTip(event, 'fs32', 105)" onmouseover="showTip(event, 'fs32', 105)" class="i">sgn</span> <span class="k">-&gt;</span> <span class="k">match</span> <span onmouseout="hideTip(event, 'fs32', 106)" onmouseover="showTip(event, 'fs32', 106)" class="i">sgn</span> <span class="k">with</span> | <span onmouseout="hideTip(event, 'fs6', 107)" onmouseover="showTip(event, 'fs6', 107)" class="p">PainScore</span> <span onmouseout="hideTip(event, 'fs43', 108)" onmouseover="showTip(event, 'fs43', 108)" class="i">ps</span>     <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs43', 109)" onmouseover="showTip(event, 'fs43', 109)" class="i">ps</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs40', 110)" onmouseover="showTip(event, 'fs40', 110)" class="f">pred</span> | _ <span class="k">-&gt;</span> <span class="k">true</span>)
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs39', 93)" onmouseover="showTip(event, 'fs39', 93)" class="f">createBloodPressureTarget</span> <span onmouseout="hideTip(event, 'fs40', 94)" onmouseover="showTip(event, 'fs40', 94)" class="f">pred</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs37', 95)" onmouseover="showTip(event, 'fs37', 95)" class="f">createTarget</span> (<span class="k">fun</span> <span onmouseout="hideTip(event, 'fs32', 96)" onmouseover="showTip(event, 'fs32', 96)" class="i">sgn</span> <span class="k">-&gt;</span>
+        <span class="k">match</span> <span onmouseout="hideTip(event, 'fs32', 97)" onmouseover="showTip(event, 'fs32', 97)" class="i">sgn</span> <span class="k">with</span>
+        | <span onmouseout="hideTip(event, 'fs4', 98)" onmouseover="showTip(event, 'fs4', 98)" class="p">BloodPressure</span> <span onmouseout="hideTip(event, 'fs41', 99)" onmouseover="showTip(event, 'fs41', 99)" class="i">bp</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs41', 100)" onmouseover="showTip(event, 'fs41', 100)" class="i">bp</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs40', 101)" onmouseover="showTip(event, 'fs40', 101)" class="f">pred</span>
+        | _ <span class="k">-&gt;</span> <span class="k">true</span>)
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs42', 102)" onmouseover="showTip(event, 'fs42', 102)" class="f">createPainScoreTarget</span> <span onmouseout="hideTip(event, 'fs40', 103)" onmouseover="showTip(event, 'fs40', 103)" class="f">pred</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs37', 104)" onmouseover="showTip(event, 'fs37', 104)" class="f">createTarget</span> (<span class="k">fun</span> <span onmouseout="hideTip(event, 'fs32', 105)" onmouseover="showTip(event, 'fs32', 105)" class="i">sgn</span> <span class="k">-&gt;</span>
+    <span class="k">match</span> <span onmouseout="hideTip(event, 'fs32', 106)" onmouseover="showTip(event, 'fs32', 106)" class="i">sgn</span> <span class="k">with</span>
+    | <span onmouseout="hideTip(event, 'fs6', 107)" onmouseover="showTip(event, 'fs6', 107)" class="p">PainScore</span> <span onmouseout="hideTip(event, 'fs43', 108)" onmouseover="showTip(event, 'fs43', 108)" class="i">ps</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs43', 109)" onmouseover="showTip(event, 'fs43', 109)" class="i">ps</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs40', 110)" onmouseover="showTip(event, 'fs40', 110)" class="f">pred</span>
+    | _ <span class="k">-&gt;</span> <span class="k">true</span>)
 <span class="c">// Create conditions</span>
 <span class="k">let</span> <span onmouseout="hideTip(event, 'fs44', 111)" onmouseover="showTip(event, 'fs44', 111)" class="f">createCentralVenousLineCondition</span> <span onmouseout="hideTip(event, 'fs45', 112)" onmouseover="showTip(event, 'fs45', 112)" class="i">b</span> <span class="o">=</span>
-    (<span onmouseout="hideTip(event, 'fs37', 113)" onmouseover="showTip(event, 'fs37', 113)" class="f">createTarget</span> (<span class="k">fun</span> <span onmouseout="hideTip(event, 'fs32', 114)" onmouseover="showTip(event, 'fs32', 114)" class="i">sgn</span> <span class="k">-&gt;</span> <span class="k">match</span> <span onmouseout="hideTip(event, 'fs32', 115)" onmouseover="showTip(event, 'fs32', 115)" class="i">sgn</span> <span class="k">with</span> | <span onmouseout="hideTip(event, 'fs9', 116)" onmouseover="showTip(event, 'fs9', 116)" class="p">CentralVenousLine</span> <span onmouseout="hideTip(event, 'fs46', 117)" onmouseover="showTip(event, 'fs46', 117)" class="i">cvl</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs46', 118)" onmouseover="showTip(event, 'fs46', 118)" class="i">cvl</span> | _ <span class="k">-&gt;</span> <span class="k">false</span>), <span onmouseout="hideTip(event, 'fs45', 119)" onmouseover="showTip(event, 'fs45', 119)" class="i">b</span>) <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs13', 120)" onmouseover="showTip(event, 'fs13', 120)" class="p">Condition</span>
+    (<span onmouseout="hideTip(event, 'fs37', 113)" onmouseover="showTip(event, 'fs37', 113)" class="f">createTarget</span> (<span class="k">fun</span> <span onmouseout="hideTip(event, 'fs32', 114)" onmouseover="showTip(event, 'fs32', 114)" class="i">sgn</span> <span class="k">-&gt;</span>
+            <span class="k">match</span> <span onmouseout="hideTip(event, 'fs32', 115)" onmouseover="showTip(event, 'fs32', 115)" class="i">sgn</span> <span class="k">with</span>
+            | <span onmouseout="hideTip(event, 'fs9', 116)" onmouseover="showTip(event, 'fs9', 116)" class="p">CentralVenousLine</span> <span onmouseout="hideTip(event, 'fs46', 117)" onmouseover="showTip(event, 'fs46', 117)" class="i">cvl</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs46', 118)" onmouseover="showTip(event, 'fs46', 118)" class="i">cvl</span>
+            | _ <span class="k">-&gt;</span> <span class="k">false</span>), <span onmouseout="hideTip(event, 'fs45', 119)" onmouseover="showTip(event, 'fs45', 119)" class="i">b</span>) <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs13', 120)" onmouseover="showTip(event, 'fs13', 120)" class="p">Condition</span>
 <span class="k">let</span> <span onmouseout="hideTip(event, 'fs47', 121)" onmouseover="showTip(event, 'fs47', 121)" class="f">createLiverFailureCondition</span> <span onmouseout="hideTip(event, 'fs45', 122)" onmouseover="showTip(event, 'fs45', 122)" class="i">b</span> <span class="o">=</span>
-    (<span onmouseout="hideTip(event, 'fs37', 123)" onmouseover="showTip(event, 'fs37', 123)" class="f">createTarget</span> (<span class="k">fun</span> <span onmouseout="hideTip(event, 'fs32', 124)" onmouseover="showTip(event, 'fs32', 124)" class="i">sgn</span> <span class="k">-&gt;</span> <span class="k">match</span> <span onmouseout="hideTip(event, 'fs32', 125)" onmouseover="showTip(event, 'fs32', 125)" class="i">sgn</span> <span class="k">with</span> | <span onmouseout="hideTip(event, 'fs7', 126)" onmouseover="showTip(event, 'fs7', 126)" class="p">LiverFailure</span> <span onmouseout="hideTip(event, 'fs48', 127)" onmouseover="showTip(event, 'fs48', 127)" class="i">lvf</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs48', 128)" onmouseover="showTip(event, 'fs48', 128)" class="i">lvf</span> | _ <span class="k">-&gt;</span> <span class="k">false</span>), <span onmouseout="hideTip(event, 'fs45', 129)" onmouseover="showTip(event, 'fs45', 129)" class="i">b</span>) <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs13', 130)" onmouseover="showTip(event, 'fs13', 130)" class="p">Condition</span>
+    (<span onmouseout="hideTip(event, 'fs37', 123)" onmouseover="showTip(event, 'fs37', 123)" class="f">createTarget</span> (<span class="k">fun</span> <span onmouseout="hideTip(event, 'fs32', 124)" onmouseover="showTip(event, 'fs32', 124)" class="i">sgn</span> <span class="k">-&gt;</span>
+            <span class="k">match</span> <span onmouseout="hideTip(event, 'fs32', 125)" onmouseover="showTip(event, 'fs32', 125)" class="i">sgn</span> <span class="k">with</span>
+            | <span onmouseout="hideTip(event, 'fs7', 126)" onmouseover="showTip(event, 'fs7', 126)" class="p">LiverFailure</span> <span onmouseout="hideTip(event, 'fs48', 127)" onmouseover="showTip(event, 'fs48', 127)" class="i">lvf</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs48', 128)" onmouseover="showTip(event, 'fs48', 128)" class="i">lvf</span>
+            | _ <span class="k">-&gt;</span> <span class="k">false</span>), <span onmouseout="hideTip(event, 'fs45', 129)" onmouseover="showTip(event, 'fs45', 129)" class="i">b</span>) <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs13', 130)" onmouseover="showTip(event, 'fs13', 130)" class="p">Condition</span>
 <span class="k">let</span> <span onmouseout="hideTip(event, 'fs49', 131)" onmouseover="showTip(event, 'fs49', 131)" class="f">createBloodPressureCondition</span> <span onmouseout="hideTip(event, 'fs40', 132)" onmouseover="showTip(event, 'fs40', 132)" class="f">pred</span> <span onmouseout="hideTip(event, 'fs45', 133)" onmouseover="showTip(event, 'fs45', 133)" class="i">b</span> <span class="o">=</span>
     (<span onmouseout="hideTip(event, 'fs37', 134)" onmouseover="showTip(event, 'fs37', 134)" class="f">createTarget</span> (<span class="k">fun</span> <span onmouseout="hideTip(event, 'fs32', 135)" onmouseover="showTip(event, 'fs32', 135)" class="i">sgn</span> <span class="k">-&gt;</span> <span class="k">match</span> <span onmouseout="hideTip(event, 'fs32', 136)" onmouseover="showTip(event, 'fs32', 136)" class="i">sgn</span> <span class="k">with</span> | <span onmouseout="hideTip(event, 'fs4', 137)" onmouseover="showTip(event, 'fs4', 137)" class="p">BloodPressure</span> <span onmouseout="hideTip(event, 'fs50', 138)" onmouseover="showTip(event, 'fs50', 138)" class="i">bpl</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs50', 139)" onmouseover="showTip(event, 'fs50', 139)" class="i">bpl</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs40', 140)" onmouseover="showTip(event, 'fs40', 140)" class="f">pred</span> | _ <span class="k">-&gt;</span> <span class="k">true</span>), <span onmouseout="hideTip(event, 'fs45', 141)" onmouseover="showTip(event, 'fs45', 141)" class="i">b</span>) <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs13', 142)" onmouseover="showTip(event, 'fs13', 142)" class="p">Condition</span>
 </code></pre></td>
@@ -327,8 +351,8 @@ a treatment should be applied.</p>
 <span class="l">4: </span>
 </pre></td>
 <td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="c">// Condition targets</span>
-<span class="k">let</span> <span onmouseout="hideTip(event, 'fs54', 151)" onmouseover="showTip(event, 'fs54', 151)" class="i">hasCvlCond</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs44', 152)" onmouseover="showTip(event, 'fs44', 152)" class="f">createCentralVenousLineCondition</span> <span class="k">true</span>
-<span class="k">let</span> <span onmouseout="hideTip(event, 'fs55', 153)" onmouseover="showTip(event, 'fs55', 153)" class="i">noLvfCond</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs47', 154)" onmouseover="showTip(event, 'fs47', 154)" class="f">createLiverFailureCondition</span> <span class="k">false</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs54', 151)" onmouseover="showTip(event, 'fs54', 151)" class="i">hasCvlCond</span>  <span class="o">=</span> <span onmouseout="hideTip(event, 'fs44', 152)" onmouseover="showTip(event, 'fs44', 152)" class="f">createCentralVenousLineCondition</span> <span class="k">true</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs55', 153)" onmouseover="showTip(event, 'fs55', 153)" class="i">noLvfCond</span>   <span class="o">=</span> <span onmouseout="hideTip(event, 'fs47', 154)" onmouseover="showTip(event, 'fs47', 154)" class="f">createLiverFailureCondition</span> <span class="k">false</span>
 <span class="k">let</span> <span onmouseout="hideTip(event, 'fs56', 155)" onmouseover="showTip(event, 'fs56', 155)" class="i">bpCondSt160</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs49', 156)" onmouseover="showTip(event, 'fs49', 156)" class="f">createBloodPressureCondition</span> (<span class="k">fun</span> <span onmouseout="hideTip(event, 'fs41', 157)" onmouseover="showTip(event, 'fs41', 157)" class="i">bp</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs41', 158)" onmouseover="showTip(event, 'fs41', 158)" class="i">bp</span> <span class="o">&lt;</span> <span class="n">160</span>) <span class="k">true</span>
 </code></pre></td>
 </tr>
@@ -366,122 +390,41 @@ a treatment should be applied.</p>
 </tr>
 </table>
 <p>We need to determine whether a target is met or a condition exists.</p>
-<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">  1: </span>
-<span class="l">  2: </span>
-<span class="l">  3: </span>
-<span class="l">  4: </span>
-<span class="l">  5: </span>
-<span class="l">  6: </span>
-<span class="l">  7: </span>
-<span class="l">  8: </span>
-<span class="l">  9: </span>
-<span class="l"> 10: </span>
-<span class="l"> 11: </span>
-<span class="l"> 12: </span>
-<span class="l"> 13: </span>
-<span class="l"> 14: </span>
-<span class="l"> 15: </span>
-<span class="l"> 16: </span>
-<span class="l"> 17: </span>
-<span class="l"> 18: </span>
-<span class="l"> 19: </span>
-<span class="l"> 20: </span>
-<span class="l"> 21: </span>
-<span class="l"> 22: </span>
-<span class="l"> 23: </span>
-<span class="l"> 24: </span>
-<span class="l"> 25: </span>
-<span class="l"> 26: </span>
-<span class="l"> 27: </span>
-<span class="l"> 28: </span>
-<span class="l"> 29: </span>
-<span class="l"> 30: </span>
-<span class="l"> 31: </span>
-<span class="l"> 32: </span>
-<span class="l"> 33: </span>
-<span class="l"> 34: </span>
-<span class="l"> 35: </span>
-<span class="l"> 36: </span>
-<span class="l"> 37: </span>
-<span class="l"> 38: </span>
-<span class="l"> 39: </span>
-<span class="l"> 40: </span>
-<span class="l"> 41: </span>
-<span class="l"> 42: </span>
-<span class="l"> 43: </span>
-<span class="l"> 44: </span>
-<span class="l"> 45: </span>
-<span class="l"> 46: </span>
-<span class="l"> 47: </span>
-<span class="l"> 48: </span>
-<span class="l"> 49: </span>
-<span class="l"> 50: </span>
-<span class="l"> 51: </span>
-<span class="l"> 52: </span>
-<span class="l"> 53: </span>
-<span class="l"> 54: </span>
-<span class="l"> 55: </span>
-<span class="l"> 56: </span>
-<span class="l"> 57: </span>
-<span class="l"> 58: </span>
-<span class="l"> 59: </span>
-<span class="l"> 60: </span>
-<span class="l"> 61: </span>
-<span class="l"> 62: </span>
-<span class="l"> 63: </span>
-<span class="l"> 64: </span>
-<span class="l"> 65: </span>
-<span class="l"> 66: </span>
-<span class="l"> 67: </span>
-<span class="l"> 68: </span>
-<span class="l"> 69: </span>
-<span class="l"> 70: </span>
-<span class="l"> 71: </span>
-<span class="l"> 72: </span>
-<span class="l"> 73: </span>
-<span class="l"> 74: </span>
-<span class="l"> 75: </span>
-<span class="l"> 76: </span>
-<span class="l"> 77: </span>
-<span class="l"> 78: </span>
-<span class="l"> 79: </span>
-<span class="l"> 80: </span>
-<span class="l"> 81: </span>
-<span class="l"> 82: </span>
-<span class="l"> 83: </span>
-<span class="l"> 84: </span>
-<span class="l"> 85: </span>
-<span class="l"> 86: </span>
-<span class="l"> 87: </span>
-<span class="l"> 88: </span>
-<span class="l"> 89: </span>
-<span class="l"> 90: </span>
-<span class="l"> 91: </span>
-<span class="l"> 92: </span>
-<span class="l"> 93: </span>
-<span class="l"> 94: </span>
-<span class="l"> 95: </span>
-<span class="l"> 96: </span>
-<span class="l"> 97: </span>
-<span class="l"> 98: </span>
-<span class="l"> 99: </span>
-<span class="l">100: </span>
-<span class="l">101: </span>
-<span class="l">102: </span>
-<span class="l">103: </span>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
+<span class="l"> 2: </span>
+<span class="l"> 3: </span>
+<span class="l"> 4: </span>
+<span class="l"> 5: </span>
+<span class="l"> 6: </span>
+<span class="l"> 7: </span>
+<span class="l"> 8: </span>
+<span class="l"> 9: </span>
+<span class="l">10: </span>
 </pre></td>
 <td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="c">// Check if target is met</span>
-<span class="k">let</span> <span onmouseout="hideTip(event, 'fs61', 176)" onmouseover="showTip(event, 'fs61', 176)" class="f">isTargetMet</span> (<span onmouseout="hideTip(event, 'fs12', 177)" onmouseover="showTip(event, 'fs12', 177)" class="p">Target</span>(<span onmouseout="hideTip(event, 'fs38', 178)" onmouseover="showTip(event, 'fs38', 178)" class="f">f</span>)) <span onmouseout="hideTip(event, 'fs32', 179)" onmouseover="showTip(event, 'fs32', 179)" class="i">sgn</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs32', 180)" onmouseover="showTip(event, 'fs32', 180)" class="i">sgn</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs38', 181)" onmouseover="showTip(event, 'fs38', 181)" class="f">f</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs61', 176)" onmouseover="showTip(event, 'fs61', 176)" class="f">targetIsMet</span> (<span onmouseout="hideTip(event, 'fs12', 177)" onmouseover="showTip(event, 'fs12', 177)" class="p">Target</span>(<span onmouseout="hideTip(event, 'fs38', 178)" onmouseover="showTip(event, 'fs38', 178)" class="f">f</span>)) <span onmouseout="hideTip(event, 'fs32', 179)" onmouseover="showTip(event, 'fs32', 179)" class="i">sgn</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs32', 180)" onmouseover="showTip(event, 'fs32', 180)" class="i">sgn</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs38', 181)" onmouseover="showTip(event, 'fs38', 181)" class="f">f</span>
 
 <span class="c">// Check if condition is met</span>
-<span class="k">let</span> <span onmouseout="hideTip(event, 'fs62', 182)" onmouseover="showTip(event, 'fs62', 182)" class="f">isConditionMet</span> (<span onmouseout="hideTip(event, 'fs13', 183)" onmouseover="showTip(event, 'fs13', 183)" class="p">Condition</span>(<span onmouseout="hideTip(event, 'fs12', 184)" onmouseover="showTip(event, 'fs12', 184)" class="p">Target</span>(<span onmouseout="hideTip(event, 'fs38', 185)" onmouseover="showTip(event, 'fs38', 185)" class="f">f</span>), <span onmouseout="hideTip(event, 'fs45', 186)" onmouseover="showTip(event, 'fs45', 186)" class="i">b</span>)) <span onmouseout="hideTip(event, 'fs32', 187)" onmouseover="showTip(event, 'fs32', 187)" class="i">sgn</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs32', 188)" onmouseover="showTip(event, 'fs32', 188)" class="i">sgn</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs38', 189)" onmouseover="showTip(event, 'fs38', 189)" class="f">f</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs45', 190)" onmouseover="showTip(event, 'fs45', 190)" class="i">b</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs62', 182)" onmouseover="showTip(event, 'fs62', 182)" class="f">conditionIsMet</span> (<span onmouseout="hideTip(event, 'fs13', 183)" onmouseover="showTip(event, 'fs13', 183)" class="p">Condition</span>(<span onmouseout="hideTip(event, 'fs12', 184)" onmouseover="showTip(event, 'fs12', 184)" class="p">Target</span>(<span onmouseout="hideTip(event, 'fs38', 185)" onmouseover="showTip(event, 'fs38', 185)" class="f">f</span>), <span onmouseout="hideTip(event, 'fs45', 186)" onmouseover="showTip(event, 'fs45', 186)" class="i">b</span>)) <span onmouseout="hideTip(event, 'fs32', 187)" onmouseover="showTip(event, 'fs32', 187)" class="i">sgn</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs32', 188)" onmouseover="showTip(event, 'fs32', 188)" class="i">sgn</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs38', 189)" onmouseover="showTip(event, 'fs38', 189)" class="f">f</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs45', 190)" onmouseover="showTip(event, 'fs45', 190)" class="i">b</span>
 
-<span onmouseout="hideTip(event, 'fs36', 191)" onmouseover="showTip(event, 'fs36', 191)" class="f">printfn</span> <span class="s">&quot;Target bp &gt; 60 with bp: </span><span class="pf">%A</span><span class="s"> is met: </span><span class="pf">%A</span><span class="s">&quot;</span>  <span onmouseout="hideTip(event, 'fs57', 192)" onmouseover="showTip(event, 'fs57', 192)" class="i">bp40</span> (<span onmouseout="hideTip(event, 'fs57', 193)" onmouseover="showTip(event, 'fs57', 193)" class="i">bp40</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs61', 194)" onmouseover="showTip(event, 'fs61', 194)" class="f">isTargetMet</span> <span onmouseout="hideTip(event, 'fs51', 195)" onmouseover="showTip(event, 'fs51', 195)" class="i">bpTargetLt60</span>)
-<span onmouseout="hideTip(event, 'fs36', 196)" onmouseover="showTip(event, 'fs36', 196)" class="f">printfn</span> <span class="s">&quot;Target bp &lt; 160 with bp: </span><span class="pf">%A</span><span class="s"> is met: </span><span class="pf">%A</span><span class="s">&quot;</span> <span onmouseout="hideTip(event, 'fs57', 197)" onmouseover="showTip(event, 'fs57', 197)" class="i">bp40</span> (<span onmouseout="hideTip(event, 'fs57', 198)" onmouseover="showTip(event, 'fs57', 198)" class="i">bp40</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs62', 199)" onmouseover="showTip(event, 'fs62', 199)" class="f">isConditionMet</span> <span onmouseout="hideTip(event, 'fs56', 200)" onmouseover="showTip(event, 'fs56', 200)" class="i">bpCondSt160</span>)
-<span onmouseout="hideTip(event, 'fs36', 201)" onmouseover="showTip(event, 'fs36', 201)" class="f">printfn</span> <span class="s">&quot;Condition central venous line with cvl: </span><span class="pf">%A</span><span class="s"> is met: </span><span class="pf">%A</span><span class="s">&quot;</span>      <span onmouseout="hideTip(event, 'fs59', 202)" onmouseover="showTip(event, 'fs59', 202)" class="i">cvl</span> (<span onmouseout="hideTip(event, 'fs59', 203)" onmouseover="showTip(event, 'fs59', 203)" class="i">cvl</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs62', 204)" onmouseover="showTip(event, 'fs62', 204)" class="f">isConditionMet</span> <span onmouseout="hideTip(event, 'fs54', 205)" onmouseover="showTip(event, 'fs54', 205)" class="i">hasCvlCond</span>)
-<span onmouseout="hideTip(event, 'fs36', 206)" onmouseover="showTip(event, 'fs36', 206)" class="f">printfn</span> <span class="s">&quot;Condition liver failure with no liverfailure: </span><span class="pf">%A</span><span class="s"> is met </span><span class="pf">%A</span><span class="s">&quot;</span> <span onmouseout="hideTip(event, 'fs60', 207)" onmouseover="showTip(event, 'fs60', 207)" class="i">lvf</span> (<span onmouseout="hideTip(event, 'fs60', 208)" onmouseover="showTip(event, 'fs60', 208)" class="i">lvf</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs62', 209)" onmouseover="showTip(event, 'fs62', 209)" class="f">isConditionMet</span> <span onmouseout="hideTip(event, 'fs55', 210)" onmouseover="showTip(event, 'fs55', 210)" class="i">noLvfCond</span>)
-
-<span class="c">// Create an Order</span>
+<span onmouseout="hideTip(event, 'fs36', 191)" onmouseover="showTip(event, 'fs36', 191)" class="f">printfn</span> <span class="s">&quot;Target bp &gt; 60 with bp: </span><span class="pf">%A</span><span class="s"> is met: </span><span class="pf">%A</span><span class="s">&quot;</span>  <span onmouseout="hideTip(event, 'fs57', 192)" onmouseover="showTip(event, 'fs57', 192)" class="i">bp40</span> (<span onmouseout="hideTip(event, 'fs57', 193)" onmouseover="showTip(event, 'fs57', 193)" class="i">bp40</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs61', 194)" onmouseover="showTip(event, 'fs61', 194)" class="f">targetIsMet</span> <span onmouseout="hideTip(event, 'fs51', 195)" onmouseover="showTip(event, 'fs51', 195)" class="i">bpTargetLt60</span>)
+<span onmouseout="hideTip(event, 'fs36', 196)" onmouseover="showTip(event, 'fs36', 196)" class="f">printfn</span> <span class="s">&quot;Target bp &lt; 160 with bp: </span><span class="pf">%A</span><span class="s"> is met: </span><span class="pf">%A</span><span class="s">&quot;</span> <span onmouseout="hideTip(event, 'fs57', 197)" onmouseover="showTip(event, 'fs57', 197)" class="i">bp40</span> (<span onmouseout="hideTip(event, 'fs57', 198)" onmouseover="showTip(event, 'fs57', 198)" class="i">bp40</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs62', 199)" onmouseover="showTip(event, 'fs62', 199)" class="f">conditionIsMet</span> <span onmouseout="hideTip(event, 'fs56', 200)" onmouseover="showTip(event, 'fs56', 200)" class="i">bpCondSt160</span>)
+<span onmouseout="hideTip(event, 'fs36', 201)" onmouseover="showTip(event, 'fs36', 201)" class="f">printfn</span> <span class="s">&quot;Condition central venous line with cvl: </span><span class="pf">%A</span><span class="s"> is met: </span><span class="pf">%A</span><span class="s">&quot;</span>      <span onmouseout="hideTip(event, 'fs59', 202)" onmouseover="showTip(event, 'fs59', 202)" class="i">cvl</span> (<span onmouseout="hideTip(event, 'fs59', 203)" onmouseover="showTip(event, 'fs59', 203)" class="i">cvl</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs62', 204)" onmouseover="showTip(event, 'fs62', 204)" class="f">conditionIsMet</span> <span onmouseout="hideTip(event, 'fs54', 205)" onmouseover="showTip(event, 'fs54', 205)" class="i">hasCvlCond</span>)
+<span onmouseout="hideTip(event, 'fs36', 206)" onmouseover="showTip(event, 'fs36', 206)" class="f">printfn</span> <span class="s">&quot;Condition liver failure with no liverfailure: </span><span class="pf">%A</span><span class="s"> is met </span><span class="pf">%A</span><span class="s">&quot;</span> <span onmouseout="hideTip(event, 'fs60', 207)" onmouseover="showTip(event, 'fs60', 207)" class="i">lvf</span> (<span onmouseout="hideTip(event, 'fs60', 208)" onmouseover="showTip(event, 'fs60', 208)" class="i">lvf</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs62', 209)" onmouseover="showTip(event, 'fs62', 209)" class="f">conditionIsMet</span> <span onmouseout="hideTip(event, 'fs55', 210)" onmouseover="showTip(event, 'fs55', 210)" class="i">noLvfCond</span>)
+</code></pre></td>
+</tr>
+</table>
+<p>To define treatmet, orders are needed.</p>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+<span class="l">6: </span>
+<span class="l">7: </span>
+<span class="l">8: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="c">// Create an Order</span>
 <span class="k">let</span> <span onmouseout="hideTip(event, 'fs63', 211)" onmouseover="showTip(event, 'fs63', 211)" class="f">createOrder</span> <span onmouseout="hideTip(event, 'fs64', 212)" onmouseover="showTip(event, 'fs64', 212)" class="i">ord</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs64', 213)" onmouseover="showTip(event, 'fs64', 213)" class="i">ord</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs14', 214)" onmouseover="showTip(event, 'fs14', 214)" class="p">Order</span>
 
 <span class="c">// Create some test orders</span>
@@ -489,90 +432,295 @@ a treatment should be applied.</p>
 <span class="k">let</span> <span onmouseout="hideTip(event, 'fs66', 217)" onmouseover="showTip(event, 'fs66', 217)" class="i">morf</span> <span class="o">=</span> <span class="s">&quot;morfine&quot;</span>       <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs63', 218)" onmouseover="showTip(event, 'fs63', 218)" class="f">createOrder</span>
 <span class="k">let</span> <span onmouseout="hideTip(event, 'fs67', 219)" onmouseover="showTip(event, 'fs67', 219)" class="i">dopa</span> <span class="o">=</span> <span class="s">&quot;dopamine&quot;</span>      <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs63', 220)" onmouseover="showTip(event, 'fs63', 220)" class="f">createOrder</span>
 <span class="k">let</span> <span onmouseout="hideTip(event, 'fs68', 221)" onmouseover="showTip(event, 'fs68', 221)" class="i">nor</span>  <span class="o">=</span> <span class="s">&quot;noradrenaline&quot;</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs63', 222)" onmouseover="showTip(event, 'fs63', 222)" class="f">createOrder</span>
-
-<span class="c">// Create a Treatment</span>
+</code></pre></td>
+</tr>
+</table>
+<p>Treatment is created by combining a target with an orderd.</p>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="c">// Create a Treatment</span>
 <span class="k">let</span> <span onmouseout="hideTip(event, 'fs69', 223)" onmouseover="showTip(event, 'fs69', 223)" class="f">createTreatment</span> <span onmouseout="hideTip(event, 'fs70', 224)" onmouseover="showTip(event, 'fs70', 224)" class="i">targ</span> <span onmouseout="hideTip(event, 'fs71', 225)" onmouseover="showTip(event, 'fs71', 225)" class="i">ord</span> <span class="o">=</span> (<span onmouseout="hideTip(event, 'fs70', 226)" onmouseover="showTip(event, 'fs70', 226)" class="i">targ</span>, <span onmouseout="hideTip(event, 'fs71', 227)" onmouseover="showTip(event, 'fs71', 227)" class="i">ord</span>) <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs15', 228)" onmouseover="showTip(event, 'fs15', 228)" class="p">Treatment</span>
-
-<span class="k">let</span> <span onmouseout="hideTip(event, 'fs72', 229)" onmouseover="showTip(event, 'fs72', 229)" class="f">eqsTreatment</span> (<span onmouseout="hideTip(event, 'fs15', 230)" onmouseover="showTip(event, 'fs15', 230)" class="p">Treatment</span>(_, <span onmouseout="hideTip(event, 'fs73', 231)" onmouseover="showTip(event, 'fs73', 231)" class="i">ord1</span>)) (<span onmouseout="hideTip(event, 'fs15', 232)" onmouseover="showTip(event, 'fs15', 232)" class="p">Treatment</span>(_, <span onmouseout="hideTip(event, 'fs74', 233)" onmouseover="showTip(event, 'fs74', 233)" class="i">ord2</span>)) <span class="o">=</span> <span class="i">ord1</span> <span class="o">=</span> <span class="i">ord2</span>
-
-<span class="c">// Create treatement examples</span>
+</code></pre></td>
+</tr>
+</table>
+<p>A treatment is the same as some other treatment when the orders
+are the same (targets could differ).</p>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs72', 229)" onmouseover="showTip(event, 'fs72', 229)" class="f">eqsTreatment</span> (<span onmouseout="hideTip(event, 'fs15', 230)" onmouseover="showTip(event, 'fs15', 230)" class="p">Treatment</span>(_, <span onmouseout="hideTip(event, 'fs73', 231)" onmouseover="showTip(event, 'fs73', 231)" class="i">ord1</span>)) (<span onmouseout="hideTip(event, 'fs15', 232)" onmouseover="showTip(event, 'fs15', 232)" class="p">Treatment</span>(_, <span onmouseout="hideTip(event, 'fs74', 233)" onmouseover="showTip(event, 'fs74', 233)" class="i">ord2</span>)) <span class="o">=</span> <span class="i">ord1</span> <span class="o">=</span> <span class="i">ord2</span>
+</code></pre></td>
+</tr>
+</table>
+<p>Here, treatment with paracetamol, morfine, dopamine and noradrenalin
+are created.</p>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="c">// Create treatement examples</span>
 <span class="k">let</span> <span onmouseout="hideTip(event, 'fs75', 234)" onmouseover="showTip(event, 'fs75', 234)" class="i">pcmTreat</span>  <span class="o">=</span> <span onmouseout="hideTip(event, 'fs65', 235)" onmouseover="showTip(event, 'fs65', 235)" class="i">pcm</span>  <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs69', 236)" onmouseover="showTip(event, 'fs69', 236)" class="f">createTreatment</span> <span onmouseout="hideTip(event, 'fs52', 237)" onmouseover="showTip(event, 'fs52', 237)" class="i">noPain</span>
 <span class="k">let</span> <span onmouseout="hideTip(event, 'fs76', 238)" onmouseover="showTip(event, 'fs76', 238)" class="i">morfTreat</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs66', 239)" onmouseover="showTip(event, 'fs66', 239)" class="i">morf</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs69', 240)" onmouseover="showTip(event, 'fs69', 240)" class="f">createTreatment</span> <span onmouseout="hideTip(event, 'fs52', 241)" onmouseover="showTip(event, 'fs52', 241)" class="i">noPain</span>
 <span class="k">let</span> <span onmouseout="hideTip(event, 'fs77', 242)" onmouseover="showTip(event, 'fs77', 242)" class="i">dopaTreat</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs67', 243)" onmouseover="showTip(event, 'fs67', 243)" class="i">dopa</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs69', 244)" onmouseover="showTip(event, 'fs69', 244)" class="f">createTreatment</span> <span onmouseout="hideTip(event, 'fs51', 245)" onmouseover="showTip(event, 'fs51', 245)" class="i">bpTargetLt60</span>
 <span class="k">let</span> <span onmouseout="hideTip(event, 'fs78', 246)" onmouseover="showTip(event, 'fs78', 246)" class="i">norTreat</span>  <span class="o">=</span> <span onmouseout="hideTip(event, 'fs68', 247)" onmouseover="showTip(event, 'fs68', 247)" class="i">nor</span>  <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs69', 248)" onmouseover="showTip(event, 'fs69', 248)" class="f">createTreatment</span> <span onmouseout="hideTip(event, 'fs51', 249)" onmouseover="showTip(event, 'fs51', 249)" class="i">bpTargetLt60</span>
-
-<span class="c">// Create and add to a Protocol</span>
+</code></pre></td>
+</tr>
+</table>
+<p>To create protocol, a list of conditions is needed along
+with a treatment.</p>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="c">// Create and add to a Protocol</span>
 <span class="k">let</span> <span onmouseout="hideTip(event, 'fs79', 250)" onmouseover="showTip(event, 'fs79', 250)" class="f">createProtocol</span> <span onmouseout="hideTip(event, 'fs80', 251)" onmouseover="showTip(event, 'fs80', 251)" class="i">cnds</span> <span onmouseout="hideTip(event, 'fs81', 252)" onmouseover="showTip(event, 'fs81', 252)" class="i">trt</span> <span class="o">=</span> [(<span onmouseout="hideTip(event, 'fs80', 253)" onmouseover="showTip(event, 'fs80', 253)" class="i">cnds</span>, <span onmouseout="hideTip(event, 'fs81', 254)" onmouseover="showTip(event, 'fs81', 254)" class="i">trt</span>)] <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs17', 255)" onmouseover="showTip(event, 'fs17', 255)" class="p">Protocol</span>
 <span class="k">let</span> <span onmouseout="hideTip(event, 'fs82', 256)" onmouseover="showTip(event, 'fs82', 256)" class="f">nextStepInProtocol</span> <span onmouseout="hideTip(event, 'fs80', 257)" onmouseover="showTip(event, 'fs80', 257)" class="i">cnds</span> <span onmouseout="hideTip(event, 'fs81', 258)" onmouseover="showTip(event, 'fs81', 258)" class="i">trt</span> (<span onmouseout="hideTip(event, 'fs17', 259)" onmouseover="showTip(event, 'fs17', 259)" class="p">Protocol</span>(<span onmouseout="hideTip(event, 'fs83', 260)" onmouseover="showTip(event, 'fs83', 260)" class="i">trts</span>)) <span class="o">=</span>
     [(<span onmouseout="hideTip(event, 'fs80', 261)" onmouseover="showTip(event, 'fs80', 261)" class="i">cnds</span>, <span onmouseout="hideTip(event, 'fs81', 262)" onmouseover="showTip(event, 'fs81', 262)" class="i">trt</span>)] <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs84', 263)" onmouseover="showTip(event, 'fs84', 263)" class="t">List</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs85', 264)" onmouseover="showTip(event, 'fs85', 264)" class="f">append</span> <span class="i">trts</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs17', 265)" onmouseover="showTip(event, 'fs17', 265)" class="p">Protocol</span>
-
-<span class="c">// Create a pain protocol</span>
+</code></pre></td>
+</tr>
+</table>
+<p>A pain protocol could look like this:</p>
+<ol>
+<li>
+The first step is paracetamol, if no liver failure present
+and the patient is in pain (the target)
+</li>
+<li>The next step is to add or replace with morfine.</li>
+</ol>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="c">// Create a pain protocol</span>
 <span class="k">let</span> <span onmouseout="hideTip(event, 'fs86', 266)" onmouseover="showTip(event, 'fs86', 266)" class="i">painProtocol</span> <span class="o">=</span>
     <span onmouseout="hideTip(event, 'fs75', 267)" onmouseover="showTip(event, 'fs75', 267)" class="i">pcmTreat</span>
     <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs79', 268)" onmouseover="showTip(event, 'fs79', 268)" class="f">createProtocol</span> [<span onmouseout="hideTip(event, 'fs55', 269)" onmouseover="showTip(event, 'fs55', 269)" class="i">noLvfCond</span>]      <span class="c">// Give pcm if no liver failure and pain</span>
     <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs82', 270)" onmouseover="showTip(event, 'fs82', 270)" class="f">nextStepInProtocol</span> [] <span onmouseout="hideTip(event, 'fs76', 271)" onmouseover="showTip(event, 'fs76', 271)" class="i">morfTreat</span> <span class="c">// Give morfine if still pain</span>
-
-<span class="c">// Create a blood pressure protocol</span>
+</code></pre></td>
+</tr>
+</table>
+<p>A blood pressure protocol looks like:</p>
+<ol>
+<li>
+First start with dopammine when the blood pressure
+is lower than 60, a contraindication is a bloodpressure above 160
+</li>
+<li>Next add noradrenalin if the patient has a central venous line</li>
+</ol>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="c">// Create a blood pressure protocol</span>
 <span class="k">let</span> <span onmouseout="hideTip(event, 'fs87', 272)" onmouseover="showTip(event, 'fs87', 272)" class="i">bpProtocol</span> <span class="o">=</span>
     <span onmouseout="hideTip(event, 'fs77', 273)" onmouseover="showTip(event, 'fs77', 273)" class="i">dopaTreat</span>
     <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs79', 274)" onmouseover="showTip(event, 'fs79', 274)" class="f">createProtocol</span> [<span onmouseout="hideTip(event, 'fs56', 275)" onmouseover="showTip(event, 'fs56', 275)" class="i">bpCondSt160</span>]                          <span class="c">// Start with dopa if bp &lt; 60 but no bp &gt; 160</span>
     <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs82', 276)" onmouseover="showTip(event, 'fs82', 276)" class="f">nextStepInProtocol</span> [<span onmouseout="hideTip(event, 'fs54', 277)" onmouseover="showTip(event, 'fs54', 277)" class="i">hasCvlCond</span>; <span onmouseout="hideTip(event, 'fs56', 278)" onmouseover="showTip(event, 'fs56', 278)" class="i">bpCondSt160</span>] <span onmouseout="hideTip(event, 'fs78', 279)" onmouseover="showTip(event, 'fs78', 279)" class="i">norTreat</span> <span class="c">// Add nor if cvl and no bp &gt; 160</span>
-
-<span class="c">// Create and add to patient treatment</span>
-<span class="k">let</span> <span onmouseout="hideTip(event, 'fs88', 280)" onmouseover="showTip(event, 'fs88', 280)" class="f">createPatientTreatment</span> <span onmouseout="hideTip(event, 'fs89', 281)" onmouseover="showTip(event, 'fs89', 281)" class="i">pat</span> <span onmouseout="hideTip(event, 'fs90', 282)" onmouseover="showTip(event, 'fs90', 282)" class="i">trts</span> <span class="o">=</span> (<span onmouseout="hideTip(event, 'fs89', 283)" onmouseover="showTip(event, 'fs89', 283)" class="i">pat</span>, <span onmouseout="hideTip(event, 'fs90', 284)" onmouseover="showTip(event, 'fs90', 284)" class="i">trts</span>) <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs16', 285)" onmouseover="showTip(event, 'fs16', 285)" class="p">PatientTreatment</span>
-<span class="k">let</span> <span onmouseout="hideTip(event, 'fs91', 286)" onmouseover="showTip(event, 'fs91', 286)" class="f">addPatientTreatment</span> <span onmouseout="hideTip(event, 'fs81', 287)" onmouseover="showTip(event, 'fs81', 287)" class="i">trt</span> (<span onmouseout="hideTip(event, 'fs16', 288)" onmouseover="showTip(event, 'fs16', 288)" class="p">PatientTreatment</span>(<span onmouseout="hideTip(event, 'fs89', 289)" onmouseover="showTip(event, 'fs89', 289)" class="i">pat</span>, <span onmouseout="hideTip(event, 'fs90', 290)" onmouseover="showTip(event, 'fs90', 290)" class="i">trts</span>)) <span class="o">=</span>
-    <span class="k">if</span> <span class="i">trts</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs84', 291)" onmouseover="showTip(event, 'fs84', 291)" class="t">List</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs92', 292)" onmouseover="showTip(event, 'fs92', 292)" class="f">exists</span> (<span onmouseout="hideTip(event, 'fs72', 293)" onmouseover="showTip(event, 'fs72', 293)" class="f">eqsTreatment</span> <span onmouseout="hideTip(event, 'fs81', 294)" onmouseover="showTip(event, 'fs81', 294)" class="i">trt</span>) <span class="k">then</span> (<span onmouseout="hideTip(event, 'fs34', 295)" onmouseover="showTip(event, 'fs34', 295)" class="i">pat</span>, <span class="i">trts</span>) <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs16', 296)" onmouseover="showTip(event, 'fs16', 296)" class="p">PatientTreatment</span>
-    <span class="k">else</span> (<span onmouseout="hideTip(event, 'fs34', 297)" onmouseover="showTip(event, 'fs34', 297)" class="i">pat</span>, <span onmouseout="hideTip(event, 'fs81', 298)" onmouseover="showTip(event, 'fs81', 298)" class="i">trt</span><span class="o">::</span><span class="i">trts</span>) <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs16', 299)" onmouseover="showTip(event, 'fs16', 299)" class="p">PatientTreatment</span>
+</code></pre></td>
+</tr>
+</table>
+<p>A patient can be associated with a list of treatment. Treatment
+can be added an removed from that list.</p>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
+<span class="l"> 2: </span>
+<span class="l"> 3: </span>
+<span class="l"> 4: </span>
+<span class="l"> 5: </span>
+<span class="l"> 6: </span>
+<span class="l"> 7: </span>
+<span class="l"> 8: </span>
+<span class="l"> 9: </span>
+<span class="l">10: </span>
+<span class="l">11: </span>
+<span class="l">12: </span>
+<span class="l">13: </span>
+<span class="l">14: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="c">// Create and add to patient treatment</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs88', 280)" onmouseover="showTip(event, 'fs88', 280)" class="f">createPatientTreatment</span> <span onmouseout="hideTip(event, 'fs89', 281)" onmouseover="showTip(event, 'fs89', 281)" class="i">testPat</span> <span onmouseout="hideTip(event, 'fs90', 282)" onmouseover="showTip(event, 'fs90', 282)" class="i">trts</span> <span class="o">=</span> (<span onmouseout="hideTip(event, 'fs89', 283)" onmouseover="showTip(event, 'fs89', 283)" class="i">testPat</span>, <span onmouseout="hideTip(event, 'fs90', 284)" onmouseover="showTip(event, 'fs90', 284)" class="i">trts</span>) <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs16', 285)" onmouseover="showTip(event, 'fs16', 285)" class="p">PatientTreatment</span>
+<span class="c">// Add the treatment if not allready there</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs91', 286)" onmouseover="showTip(event, 'fs91', 286)" class="f">addPatientTreatment</span> <span onmouseout="hideTip(event, 'fs81', 287)" onmouseover="showTip(event, 'fs81', 287)" class="i">trt</span> (<span onmouseout="hideTip(event, 'fs16', 288)" onmouseover="showTip(event, 'fs16', 288)" class="p">PatientTreatment</span>(<span onmouseout="hideTip(event, 'fs89', 289)" onmouseover="showTip(event, 'fs89', 289)" class="i">testPat</span>, <span onmouseout="hideTip(event, 'fs90', 290)" onmouseover="showTip(event, 'fs90', 290)" class="i">trts</span>)) <span class="o">=</span>
+    <span class="k">if</span> <span class="i">trts</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs84', 291)" onmouseover="showTip(event, 'fs84', 291)" class="t">List</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs92', 292)" onmouseover="showTip(event, 'fs92', 292)" class="f">exists</span> (<span onmouseout="hideTip(event, 'fs72', 293)" onmouseover="showTip(event, 'fs72', 293)" class="f">eqsTreatment</span> <span onmouseout="hideTip(event, 'fs81', 294)" onmouseover="showTip(event, 'fs81', 294)" class="i">trt</span>) <span class="k">then</span>
+        (<span onmouseout="hideTip(event, 'fs34', 295)" onmouseover="showTip(event, 'fs34', 295)" class="i">testPat</span>, <span class="i">trts</span>) <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs16', 296)" onmouseover="showTip(event, 'fs16', 296)" class="p">PatientTreatment</span>
+    <span class="k">else</span> (<span onmouseout="hideTip(event, 'fs34', 297)" onmouseover="showTip(event, 'fs34', 297)" class="i">testPat</span>, <span onmouseout="hideTip(event, 'fs81', 298)" onmouseover="showTip(event, 'fs81', 298)" class="i">trt</span><span class="o">::</span><span class="i">trts</span>) <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs16', 299)" onmouseover="showTip(event, 'fs16', 299)" class="p">PatientTreatment</span>
+<span class="c">// Remove the treatment if there</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs93', 300)" onmouseover="showTip(event, 'fs93', 300)" class="f">removePatientTreatment</span> <span onmouseout="hideTip(event, 'fs81', 301)" onmouseover="showTip(event, 'fs81', 301)" class="i">trt</span> (<span onmouseout="hideTip(event, 'fs16', 302)" onmouseover="showTip(event, 'fs16', 302)" class="p">PatientTreatment</span>(<span onmouseout="hideTip(event, 'fs89', 303)" onmouseover="showTip(event, 'fs89', 303)" class="i">testPat</span>, <span onmouseout="hideTip(event, 'fs90', 304)" onmouseover="showTip(event, 'fs90', 304)" class="i">trts</span>)) <span class="o">=</span>
+    (<span onmouseout="hideTip(event, 'fs34', 305)" onmouseover="showTip(event, 'fs34', 305)" class="i">testPat</span>, <span class="i">trts</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs84', 306)" onmouseover="showTip(event, 'fs84', 306)" class="t">List</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs94', 307)" onmouseover="showTip(event, 'fs94', 307)" class="f">filter</span>((<span onmouseout="hideTip(event, 'fs72', 308)" onmouseover="showTip(event, 'fs72', 308)" class="f">eqsTreatment</span> <span onmouseout="hideTip(event, 'fs81', 309)" onmouseover="showTip(event, 'fs81', 309)" class="i">trt</span>) <span class="o">&gt;</span><span class="o">&gt;</span> <span onmouseout="hideTip(event, 'fs95', 310)" onmouseover="showTip(event, 'fs95', 310)" class="f">not</span>))
+    <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs16', 311)" onmouseover="showTip(event, 'fs16', 311)" class="p">PatientTreatment</span>
 
 <span class="c">// Test patient treatment</span>
-<span class="k">let</span> <span onmouseout="hideTip(event, 'fs93', 300)" onmouseover="showTip(event, 'fs93', 300)" class="i">patTreatm</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs88', 301)" onmouseover="showTip(event, 'fs88', 301)" class="f">createPatientTreatment</span> <span onmouseout="hideTip(event, 'fs34', 302)" onmouseover="showTip(event, 'fs34', 302)" class="i">pat</span> []
-
-<span class="c">// Evaluate a protocols</span>
-<span class="k">let</span> <span onmouseout="hideTip(event, 'fs94', 303)" onmouseover="showTip(event, 'fs94', 303)" class="f">evaluateProtocol</span> <span onmouseout="hideTip(event, 'fs95', 304)" onmouseover="showTip(event, 'fs95', 304)" class="i">prot</span> (<span onmouseout="hideTip(event, 'fs10', 305)" onmouseover="showTip(event, 'fs10', 305)" class="p">PatientSigns</span>(_, <span onmouseout="hideTip(event, 'fs33', 306)" onmouseover="showTip(event, 'fs33', 306)" class="i">sgns</span>)) <span onmouseout="hideTip(event, 'fs96', 307)" onmouseover="showTip(event, 'fs96', 307)" class="i">patTr</span> <span class="o">=</span>
-    <span class="k">let</span> <span class="k">rec</span> <span onmouseout="hideTip(event, 'fs97', 308)" onmouseover="showTip(event, 'fs97', 308)" class="f">eval</span> (<span onmouseout="hideTip(event, 'fs17', 309)" onmouseover="showTip(event, 'fs17', 309)" class="p">Protocol</span>(<span onmouseout="hideTip(event, 'fs98', 310)" onmouseover="showTip(event, 'fs98', 310)" class="i">xs</span>)) <span onmouseout="hideTip(event, 'fs99', 311)" onmouseover="showTip(event, 'fs99', 311)" class="i">acc</span> <span class="o">=</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs96', 312)" onmouseover="showTip(event, 'fs96', 312)" class="i">patTreatm</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs88', 313)" onmouseover="showTip(event, 'fs88', 313)" class="f">createPatientTreatment</span> <span onmouseout="hideTip(event, 'fs34', 314)" onmouseover="showTip(event, 'fs34', 314)" class="i">testPat</span> []
+</code></pre></td>
+</tr>
+</table>
+<p>Finally, the algorythm to evaluate the patient treatment
+according to a protocol.</p>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
+<span class="l"> 2: </span>
+<span class="l"> 3: </span>
+<span class="l"> 4: </span>
+<span class="l"> 5: </span>
+<span class="l"> 6: </span>
+<span class="l"> 7: </span>
+<span class="l"> 8: </span>
+<span class="l"> 9: </span>
+<span class="l">10: </span>
+<span class="l">11: </span>
+<span class="l">12: </span>
+<span class="l">13: </span>
+<span class="l">14: </span>
+<span class="l">15: </span>
+<span class="l">16: </span>
+<span class="l">17: </span>
+<span class="l">18: </span>
+<span class="l">19: </span>
+<span class="l">20: </span>
+<span class="l">21: </span>
+<span class="l">22: </span>
+<span class="l">23: </span>
+<span class="l">24: </span>
+<span class="l">25: </span>
+<span class="l">26: </span>
+<span class="l">27: </span>
+<span class="l">28: </span>
+<span class="l">29: </span>
+<span class="l">30: </span>
+<span class="l">31: </span>
+<span class="l">32: </span>
+<span class="l">33: </span>
+<span class="l">34: </span>
+<span class="l">35: </span>
+<span class="l">36: </span>
+<span class="l">37: </span>
+<span class="l">38: </span>
+<span class="l">39: </span>
+<span class="l">40: </span>
+<span class="l">41: </span>
+<span class="l">42: </span>
+<span class="l">43: </span>
+<span class="l">44: </span>
+<span class="l">45: </span>
+<span class="l">46: </span>
+<span class="l">47: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="c">// Evaluate a protocols</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs97', 315)" onmouseover="showTip(event, 'fs97', 315)" class="f">evaluateProtocol</span> <span onmouseout="hideTip(event, 'fs98', 316)" onmouseover="showTip(event, 'fs98', 316)" class="i">prot</span> (<span onmouseout="hideTip(event, 'fs10', 317)" onmouseover="showTip(event, 'fs10', 317)" class="p">PatientSigns</span>(_, <span onmouseout="hideTip(event, 'fs33', 318)" onmouseover="showTip(event, 'fs33', 318)" class="i">sgns</span>)) <span onmouseout="hideTip(event, 'fs99', 319)" onmouseover="showTip(event, 'fs99', 319)" class="i">patTr</span> <span class="o">=</span>
+    <span class="k">let</span> <span class="k">rec</span> <span onmouseout="hideTip(event, 'fs100', 320)" onmouseover="showTip(event, 'fs100', 320)" class="f">eval</span> (<span onmouseout="hideTip(event, 'fs17', 321)" onmouseover="showTip(event, 'fs17', 321)" class="p">Protocol</span>(<span onmouseout="hideTip(event, 'fs101', 322)" onmouseover="showTip(event, 'fs101', 322)" class="i">xs</span>)) <span onmouseout="hideTip(event, 'fs102', 323)" onmouseover="showTip(event, 'fs102', 323)" class="i">acc</span> <span class="o">=</span>
         <span class="k">match</span> <span class="i">xs</span> <span class="k">with</span>
-        | [] <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs99', 312)" onmouseover="showTip(event, 'fs99', 312)" class="i">acc</span>
-        | <span onmouseout="hideTip(event, 'fs100', 313)" onmouseover="showTip(event, 'fs100', 313)" class="i">h</span><span class="o">::</span><span onmouseout="hideTip(event, 'fs101', 314)" onmouseover="showTip(event, 'fs101', 314)" class="i">rest</span> <span class="k">-&gt;</span>
-            <span class="k">let</span> <span onmouseout="hideTip(event, 'fs80', 315)" onmouseover="showTip(event, 'fs80', 315)" class="i">cnds</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs100', 316)" onmouseover="showTip(event, 'fs100', 316)" class="i">h</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs102', 317)" onmouseover="showTip(event, 'fs102', 317)" class="f">fst</span>
-            <span class="k">let</span> <span onmouseout="hideTip(event, 'fs81', 318)" onmouseover="showTip(event, 'fs81', 318)" class="i">trt</span>  <span class="o">=</span> <span onmouseout="hideTip(event, 'fs100', 319)" onmouseover="showTip(event, 'fs100', 319)" class="i">h</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs103', 320)" onmouseover="showTip(event, 'fs103', 320)" class="f">snd</span>
-            <span class="k">let</span> <span onmouseout="hideTip(event, 'fs104', 321)" onmouseover="showTip(event, 'fs104', 321)" class="i">trg</span> <span class="o">=</span> <span class="k">let</span> (<span onmouseout="hideTip(event, 'fs15', 322)" onmouseover="showTip(event, 'fs15', 322)" class="p">Treatment</span>(<span onmouseout="hideTip(event, 'fs104', 323)" onmouseover="showTip(event, 'fs104', 323)" class="i">trg</span>, _)) <span class="o">=</span> <span onmouseout="hideTip(event, 'fs81', 324)" onmouseover="showTip(event, 'fs81', 324)" class="i">trt</span> <span class="k">in</span> <span onmouseout="hideTip(event, 'fs104', 325)" onmouseover="showTip(event, 'fs104', 325)" class="i">trg</span>
-            <span class="k">let</span> <span onmouseout="hideTip(event, 'fs105', 326)" onmouseover="showTip(event, 'fs105', 326)" class="i">condMet</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs33', 327)" onmouseover="showTip(event, 'fs33', 327)" class="i">sgns</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs84', 328)" onmouseover="showTip(event, 'fs84', 328)" class="t">List</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs106', 329)" onmouseover="showTip(event, 'fs106', 329)" class="f">forall</span> (<span class="k">fun</span> <span onmouseout="hideTip(event, 'fs32', 330)" onmouseover="showTip(event, 'fs32', 330)" class="i">sgn</span> <span class="k">-&gt;</span>
-                <span onmouseout="hideTip(event, 'fs80', 331)" onmouseover="showTip(event, 'fs80', 331)" class="i">cnds</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs84', 332)" onmouseover="showTip(event, 'fs84', 332)" class="t">List</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs106', 333)" onmouseover="showTip(event, 'fs106', 333)" class="f">forall</span> (<span class="k">fun</span> <span onmouseout="hideTip(event, 'fs107', 334)" onmouseover="showTip(event, 'fs107', 334)" class="i">cnd</span> <span class="k">-&gt;</span>
-                    <span onmouseout="hideTip(event, 'fs32', 335)" onmouseover="showTip(event, 'fs32', 335)" class="i">sgn</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs62', 336)" onmouseover="showTip(event, 'fs62', 336)" class="f">isConditionMet</span> <span onmouseout="hideTip(event, 'fs107', 337)" onmouseover="showTip(event, 'fs107', 337)" class="i">cnd</span>))
-            <span class="k">let</span> <span onmouseout="hideTip(event, 'fs108', 338)" onmouseover="showTip(event, 'fs108', 338)" class="i">targetNotMet</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs33', 339)" onmouseover="showTip(event, 'fs33', 339)" class="i">sgns</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs84', 340)" onmouseover="showTip(event, 'fs84', 340)" class="t">List</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs106', 341)" onmouseover="showTip(event, 'fs106', 341)" class="f">forall</span> (<span class="k">fun</span> <span onmouseout="hideTip(event, 'fs32', 342)" onmouseover="showTip(event, 'fs32', 342)" class="i">sgn</span> <span class="k">-&gt;</span>
-                <span onmouseout="hideTip(event, 'fs32', 343)" onmouseover="showTip(event, 'fs32', 343)" class="i">sgn</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs61', 344)" onmouseover="showTip(event, 'fs61', 344)" class="f">isTargetMet</span> <span onmouseout="hideTip(event, 'fs104', 345)" onmouseover="showTip(event, 'fs104', 345)" class="i">trg</span>) <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs109', 346)" onmouseover="showTip(event, 'fs109', 346)" class="f">not</span>
-            <span class="k">let</span> <span onmouseout="hideTip(event, 'fs110', 347)" onmouseover="showTip(event, 'fs110', 347)" class="i">hasNotTrt</span> <span class="o">=</span>
-                <span class="k">let</span> <span onmouseout="hideTip(event, 'fs90', 348)" onmouseover="showTip(event, 'fs90', 348)" class="i">trts</span> <span class="o">=</span> <span class="k">let</span> (<span onmouseout="hideTip(event, 'fs16', 349)" onmouseover="showTip(event, 'fs16', 349)" class="p">PatientTreatment</span>(_, <span onmouseout="hideTip(event, 'fs90', 350)" onmouseover="showTip(event, 'fs90', 350)" class="i">trts</span>)) <span class="o">=</span> <span onmouseout="hideTip(event, 'fs99', 351)" onmouseover="showTip(event, 'fs99', 351)" class="i">acc</span> <span class="k">in</span> <span onmouseout="hideTip(event, 'fs90', 352)" onmouseover="showTip(event, 'fs90', 352)" class="i">trts</span>
-                <span onmouseout="hideTip(event, 'fs90', 353)" onmouseover="showTip(event, 'fs90', 353)" class="i">trts</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs84', 354)" onmouseover="showTip(event, 'fs84', 354)" class="t">List</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs92', 355)" onmouseover="showTip(event, 'fs92', 355)" class="f">exists</span>(<span onmouseout="hideTip(event, 'fs72', 356)" onmouseover="showTip(event, 'fs72', 356)" class="f">eqsTreatment</span> <span onmouseout="hideTip(event, 'fs81', 357)" onmouseover="showTip(event, 'fs81', 357)" class="i">trt</span>) <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs109', 358)" onmouseover="showTip(event, 'fs109', 358)" class="f">not</span>
-            <span class="k">if</span> <span onmouseout="hideTip(event, 'fs105', 359)" onmouseover="showTip(event, 'fs105', 359)" class="i">condMet</span> <span class="o">&amp;&amp;</span> <span onmouseout="hideTip(event, 'fs108', 360)" onmouseover="showTip(event, 'fs108', 360)" class="i">targetNotMet</span> <span class="o">&amp;&amp;</span> <span onmouseout="hideTip(event, 'fs110', 361)" onmouseover="showTip(event, 'fs110', 361)" class="i">hasNotTrt</span> <span class="k">then</span>
-                <span onmouseout="hideTip(event, 'fs99', 362)" onmouseover="showTip(event, 'fs99', 362)" class="i">acc</span>
-                <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs91', 363)" onmouseover="showTip(event, 'fs91', 363)" class="f">addPatientTreatment</span> <span onmouseout="hideTip(event, 'fs81', 364)" onmouseover="showTip(event, 'fs81', 364)" class="i">trt</span>
-                <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs97', 365)" onmouseover="showTip(event, 'fs97', 365)" class="f">eval</span> ([] <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs17', 366)" onmouseover="showTip(event, 'fs17', 366)" class="p">Protocol</span>)
-            <span class="k">else</span>
-                <span onmouseout="hideTip(event, 'fs99', 367)" onmouseover="showTip(event, 'fs99', 367)" class="i">acc</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs97', 368)" onmouseover="showTip(event, 'fs97', 368)" class="f">eval</span> (<span onmouseout="hideTip(event, 'fs101', 369)" onmouseover="showTip(event, 'fs101', 369)" class="i">rest</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs17', 370)" onmouseover="showTip(event, 'fs17', 370)" class="p">Protocol</span>)
+        | [] <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs102', 324)" onmouseover="showTip(event, 'fs102', 324)" class="i">acc</span>
+        | <span onmouseout="hideTip(event, 'fs103', 325)" onmouseover="showTip(event, 'fs103', 325)" class="i">h</span><span class="o">::</span><span onmouseout="hideTip(event, 'fs104', 326)" onmouseover="showTip(event, 'fs104', 326)" class="i">rest</span> <span class="k">-&gt;</span>
+            <span class="c">// The list of conditions for the treatment</span>
+            <span class="k">let</span> <span onmouseout="hideTip(event, 'fs80', 327)" onmouseover="showTip(event, 'fs80', 327)" class="i">cnds</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs103', 328)" onmouseover="showTip(event, 'fs103', 328)" class="i">h</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs105', 329)" onmouseover="showTip(event, 'fs105', 329)" class="f">fst</span>
+            <span class="c">// The treatment to consider</span>
+            <span class="k">let</span> <span onmouseout="hideTip(event, 'fs81', 330)" onmouseover="showTip(event, 'fs81', 330)" class="i">trt</span>  <span class="o">=</span> <span onmouseout="hideTip(event, 'fs103', 331)" onmouseover="showTip(event, 'fs103', 331)" class="i">h</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs106', 332)" onmouseover="showTip(event, 'fs106', 332)" class="f">snd</span>
+            <span class="c">// The treatment target</span>
+            <span class="k">let</span> <span onmouseout="hideTip(event, 'fs107', 333)" onmouseover="showTip(event, 'fs107', 333)" class="i">trg</span> <span class="o">=</span> <span class="k">let</span> (<span onmouseout="hideTip(event, 'fs15', 334)" onmouseover="showTip(event, 'fs15', 334)" class="p">Treatment</span>(<span onmouseout="hideTip(event, 'fs107', 335)" onmouseover="showTip(event, 'fs107', 335)" class="i">trg</span>, _)) <span class="o">=</span> <span onmouseout="hideTip(event, 'fs81', 336)" onmouseover="showTip(event, 'fs81', 336)" class="i">trt</span> <span class="k">in</span> <span onmouseout="hideTip(event, 'fs107', 337)" onmouseover="showTip(event, 'fs107', 337)" class="i">trg</span>
+            <span class="c">// Check whether all conditions are met</span>
+            <span class="c">// according to the patient signals</span>
+            <span class="k">let</span> <span onmouseout="hideTip(event, 'fs108', 338)" onmouseover="showTip(event, 'fs108', 338)" class="i">condMet</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs33', 339)" onmouseover="showTip(event, 'fs33', 339)" class="i">sgns</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs84', 340)" onmouseover="showTip(event, 'fs84', 340)" class="t">List</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs109', 341)" onmouseover="showTip(event, 'fs109', 341)" class="f">forall</span> (<span class="k">fun</span> <span onmouseout="hideTip(event, 'fs32', 342)" onmouseover="showTip(event, 'fs32', 342)" class="i">sgn</span> <span class="k">-&gt;</span>
+                <span onmouseout="hideTip(event, 'fs80', 343)" onmouseover="showTip(event, 'fs80', 343)" class="i">cnds</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs84', 344)" onmouseover="showTip(event, 'fs84', 344)" class="t">List</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs109', 345)" onmouseover="showTip(event, 'fs109', 345)" class="f">forall</span> (<span class="k">fun</span> <span onmouseout="hideTip(event, 'fs110', 346)" onmouseover="showTip(event, 'fs110', 346)" class="i">cnd</span> <span class="k">-&gt;</span>
+                    <span onmouseout="hideTip(event, 'fs32', 347)" onmouseover="showTip(event, 'fs32', 347)" class="i">sgn</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs62', 348)" onmouseover="showTip(event, 'fs62', 348)" class="f">conditionIsMet</span> <span onmouseout="hideTip(event, 'fs110', 349)" onmouseover="showTip(event, 'fs110', 349)" class="i">cnd</span>))
+            <span class="c">// Check whether target is met according</span>
+            <span class="c">// to the patient signals</span>
+            <span class="k">let</span> <span onmouseout="hideTip(event, 'fs111', 350)" onmouseover="showTip(event, 'fs111', 350)" class="i">targetMet</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs33', 351)" onmouseover="showTip(event, 'fs33', 351)" class="i">sgns</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs84', 352)" onmouseover="showTip(event, 'fs84', 352)" class="t">List</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs109', 353)" onmouseover="showTip(event, 'fs109', 353)" class="f">forall</span> (<span class="k">fun</span> <span onmouseout="hideTip(event, 'fs32', 354)" onmouseover="showTip(event, 'fs32', 354)" class="i">sgn</span> <span class="k">-&gt;</span>
+                <span onmouseout="hideTip(event, 'fs32', 355)" onmouseover="showTip(event, 'fs32', 355)" class="i">sgn</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs61', 356)" onmouseover="showTip(event, 'fs61', 356)" class="f">targetIsMet</span> <span onmouseout="hideTip(event, 'fs107', 357)" onmouseover="showTip(event, 'fs107', 357)" class="i">trg</span>)
+            <span class="k">match</span> <span onmouseout="hideTip(event, 'fs108', 358)" onmouseover="showTip(event, 'fs108', 358)" class="i">condMet</span>, <span onmouseout="hideTip(event, 'fs111', 359)" onmouseover="showTip(event, 'fs111', 359)" class="i">targetMet</span> <span class="k">with</span>
+            <span class="c">// condition met, target not met</span>
+            | <span class="k">true</span>, <span class="k">false</span> <span class="k">-&gt;</span>
+                <span class="c">// First check if treatment is not allready there</span>
+                <span class="k">let</span> <span onmouseout="hideTip(event, 'fs112', 360)" onmouseover="showTip(event, 'fs112', 360)" class="i">hasNotTrt</span> <span class="o">=</span>
+                    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs90', 361)" onmouseover="showTip(event, 'fs90', 361)" class="i">trts</span> <span class="o">=</span> <span class="k">let</span> (<span onmouseout="hideTip(event, 'fs16', 362)" onmouseover="showTip(event, 'fs16', 362)" class="p">PatientTreatment</span>(_, <span onmouseout="hideTip(event, 'fs90', 363)" onmouseover="showTip(event, 'fs90', 363)" class="i">trts</span>)) <span class="o">=</span> <span onmouseout="hideTip(event, 'fs102', 364)" onmouseover="showTip(event, 'fs102', 364)" class="i">acc</span> <span class="k">in</span> <span onmouseout="hideTip(event, 'fs90', 365)" onmouseover="showTip(event, 'fs90', 365)" class="i">trts</span>
+                    <span onmouseout="hideTip(event, 'fs90', 366)" onmouseover="showTip(event, 'fs90', 366)" class="i">trts</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs84', 367)" onmouseover="showTip(event, 'fs84', 367)" class="t">List</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs92', 368)" onmouseover="showTip(event, 'fs92', 368)" class="f">exists</span>(<span onmouseout="hideTip(event, 'fs72', 369)" onmouseover="showTip(event, 'fs72', 369)" class="f">eqsTreatment</span> <span onmouseout="hideTip(event, 'fs81', 370)" onmouseover="showTip(event, 'fs81', 370)" class="i">trt</span>) <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs95', 371)" onmouseover="showTip(event, 'fs95', 371)" class="f">not</span>
+                <span class="k">if</span> <span onmouseout="hideTip(event, 'fs112', 372)" onmouseover="showTip(event, 'fs112', 372)" class="i">hasNotTrt</span> <span class="k">then</span>
+                    <span class="c">// Add the treatment</span>
+                    <span onmouseout="hideTip(event, 'fs102', 373)" onmouseover="showTip(event, 'fs102', 373)" class="i">acc</span>
+                    <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs91', 374)" onmouseover="showTip(event, 'fs91', 374)" class="f">addPatientTreatment</span> <span onmouseout="hideTip(event, 'fs81', 375)" onmouseover="showTip(event, 'fs81', 375)" class="i">trt</span>
+                    <span class="c">// And stop the evaluation</span>
+                    <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs100', 376)" onmouseover="showTip(event, 'fs100', 376)" class="f">eval</span> ([] <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs17', 377)" onmouseover="showTip(event, 'fs17', 377)" class="p">Protocol</span>)
+                <span class="c">// Otherwise continue with the rest</span>
+                <span class="k">else</span> <span onmouseout="hideTip(event, 'fs102', 378)" onmouseover="showTip(event, 'fs102', 378)" class="i">acc</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs100', 379)" onmouseover="showTip(event, 'fs100', 379)" class="f">eval</span> (<span onmouseout="hideTip(event, 'fs104', 380)" onmouseover="showTip(event, 'fs104', 380)" class="i">rest</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs17', 381)" onmouseover="showTip(event, 'fs17', 381)" class="p">Protocol</span>)
+            <span class="c">// conditions met, but target also met</span>
+            | <span class="k">true</span>, <span class="k">true</span>
+            <span class="c">// or conditions not met</span>
+            | <span class="k">false</span>, _ <span class="k">-&gt;</span>
+                <span class="c">// Remove the treatment</span>
+                <span onmouseout="hideTip(event, 'fs102', 382)" onmouseover="showTip(event, 'fs102', 382)" class="i">acc</span>
+                <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs93', 383)" onmouseover="showTip(event, 'fs93', 383)" class="f">removePatientTreatment</span> <span onmouseout="hideTip(event, 'fs81', 384)" onmouseover="showTip(event, 'fs81', 384)" class="i">trt</span>
+                <span class="c">// And continue the evaluation</span>
+                <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs100', 385)" onmouseover="showTip(event, 'fs100', 385)" class="f">eval</span> (<span onmouseout="hideTip(event, 'fs104', 386)" onmouseover="showTip(event, 'fs104', 386)" class="i">rest</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs17', 387)" onmouseover="showTip(event, 'fs17', 387)" class="p">Protocol</span>)
 
-    <span onmouseout="hideTip(event, 'fs97', 371)" onmouseover="showTip(event, 'fs97', 371)" class="f">eval</span> <span onmouseout="hideTip(event, 'fs95', 372)" onmouseover="showTip(event, 'fs95', 372)" class="i">prot</span> <span onmouseout="hideTip(event, 'fs96', 373)" onmouseover="showTip(event, 'fs96', 373)" class="i">patTr</span>
-
-<span class="c">// Evaluate pain protocol for patient without signs</span>
-<span onmouseout="hideTip(event, 'fs93', 374)" onmouseover="showTip(event, 'fs93', 374)" class="i">patTreatm</span>
-<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs94', 375)" onmouseover="showTip(event, 'fs94', 375)" class="f">evaluateProtocol</span> <span onmouseout="hideTip(event, 'fs86', 376)" onmouseover="showTip(event, 'fs86', 376)" class="i">painProtocol</span> <span onmouseout="hideTip(event, 'fs35', 377)" onmouseover="showTip(event, 'fs35', 377)" class="i">patsigns</span>
+    <span onmouseout="hideTip(event, 'fs100', 388)" onmouseover="showTip(event, 'fs100', 388)" class="f">eval</span> <span onmouseout="hideTip(event, 'fs98', 389)" onmouseover="showTip(event, 'fs98', 389)" class="i">prot</span> <span onmouseout="hideTip(event, 'fs99', 390)" onmouseover="showTip(event, 'fs99', 390)" class="i">patTr</span>
+</code></pre></td>
+</tr>
+</table>
+<h2><a name="Test-the-implementation" class="anchor" href="#Test-the-implementation">Test the implementation</a></h2>
+<p>The implementation is tested with some examples</p>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
+<span class="l"> 2: </span>
+<span class="l"> 3: </span>
+<span class="l"> 4: </span>
+<span class="l"> 5: </span>
+<span class="l"> 6: </span>
+<span class="l"> 7: </span>
+<span class="l"> 8: </span>
+<span class="l"> 9: </span>
+<span class="l">10: </span>
+<span class="l">11: </span>
+<span class="l">12: </span>
+<span class="l">13: </span>
+<span class="l">14: </span>
+<span class="l">15: </span>
+<span class="l">16: </span>
+<span class="l">17: </span>
+<span class="l">18: </span>
+<span class="l">19: </span>
+<span class="l">20: </span>
+<span class="l">21: </span>
+<span class="l">22: </span>
+<span class="l">23: </span>
+<span class="l">24: </span>
+<span class="l">25: </span>
+<span class="l">26: </span>
+<span class="l">27: </span>
+<span class="l">28: </span>
+<span class="l">29: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="c">// Evaluate pain protocol for patient without signs</span>
+<span onmouseout="hideTip(event, 'fs96', 391)" onmouseover="showTip(event, 'fs96', 391)" class="i">patTreatm</span>
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs97', 392)" onmouseover="showTip(event, 'fs97', 392)" class="f">evaluateProtocol</span> <span onmouseout="hideTip(event, 'fs86', 393)" onmouseover="showTip(event, 'fs86', 393)" class="i">painProtocol</span> <span onmouseout="hideTip(event, 'fs35', 394)" onmouseover="showTip(event, 'fs35', 394)" class="i">patsigns</span>
 
 <span class="c">// Evaluate pain protocol for patient with pain</span>
-<span onmouseout="hideTip(event, 'fs35', 378)" onmouseover="showTip(event, 'fs35', 378)" class="i">patsigns</span>
-<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs31', 379)" onmouseover="showTip(event, 'fs31', 379)" class="f">addPatientSign</span> <span onmouseout="hideTip(event, 'fs58', 380)" onmouseover="showTip(event, 'fs58', 380)" class="i">pain</span>
-<span class="o">|&gt;</span> (<span class="k">fun</span> <span onmouseout="hideTip(event, 'fs111', 381)" onmouseover="showTip(event, 'fs111', 381)" class="i">signs</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs93', 382)" onmouseover="showTip(event, 'fs93', 382)" class="i">patTreatm</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs94', 383)" onmouseover="showTip(event, 'fs94', 383)" class="f">evaluateProtocol</span> <span onmouseout="hideTip(event, 'fs86', 384)" onmouseover="showTip(event, 'fs86', 384)" class="i">painProtocol</span> <span onmouseout="hideTip(event, 'fs111', 385)" onmouseover="showTip(event, 'fs111', 385)" class="i">signs</span>)
+<span onmouseout="hideTip(event, 'fs35', 395)" onmouseover="showTip(event, 'fs35', 395)" class="i">patsigns</span>
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs31', 396)" onmouseover="showTip(event, 'fs31', 396)" class="f">addPatientSign</span> <span onmouseout="hideTip(event, 'fs58', 397)" onmouseover="showTip(event, 'fs58', 397)" class="i">pain</span>
+<span class="o">|&gt;</span> (<span class="k">fun</span> <span onmouseout="hideTip(event, 'fs113', 398)" onmouseover="showTip(event, 'fs113', 398)" class="i">signs</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs96', 399)" onmouseover="showTip(event, 'fs96', 399)" class="i">patTreatm</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs97', 400)" onmouseover="showTip(event, 'fs97', 400)" class="f">evaluateProtocol</span> <span onmouseout="hideTip(event, 'fs86', 401)" onmouseover="showTip(event, 'fs86', 401)" class="i">painProtocol</span> <span onmouseout="hideTip(event, 'fs113', 402)" onmouseover="showTip(event, 'fs113', 402)" class="i">signs</span>)
 
 <span class="c">// Evaluate pain protocol for patient with pain and allready pcm</span>
-<span onmouseout="hideTip(event, 'fs35', 386)" onmouseover="showTip(event, 'fs35', 386)" class="i">patsigns</span>
-<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs31', 387)" onmouseover="showTip(event, 'fs31', 387)" class="f">addPatientSign</span> <span onmouseout="hideTip(event, 'fs58', 388)" onmouseover="showTip(event, 'fs58', 388)" class="i">pain</span>
-<span class="o">|&gt;</span> (<span class="k">fun</span> <span onmouseout="hideTip(event, 'fs111', 389)" onmouseover="showTip(event, 'fs111', 389)" class="i">signs</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs93', 390)" onmouseover="showTip(event, 'fs93', 390)" class="i">patTreatm</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs94', 391)" onmouseover="showTip(event, 'fs94', 391)" class="f">evaluateProtocol</span> <span onmouseout="hideTip(event, 'fs86', 392)" onmouseover="showTip(event, 'fs86', 392)" class="i">painProtocol</span> <span onmouseout="hideTip(event, 'fs111', 393)" onmouseover="showTip(event, 'fs111', 393)" class="i">signs</span>)
-<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs94', 394)" onmouseover="showTip(event, 'fs94', 394)" class="f">evaluateProtocol</span> <span onmouseout="hideTip(event, 'fs86', 395)" onmouseover="showTip(event, 'fs86', 395)" class="i">painProtocol</span> (<span onmouseout="hideTip(event, 'fs35', 396)" onmouseover="showTip(event, 'fs35', 396)" class="i">patsigns</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs31', 397)" onmouseover="showTip(event, 'fs31', 397)" class="f">addPatientSign</span> <span onmouseout="hideTip(event, 'fs58', 398)" onmouseover="showTip(event, 'fs58', 398)" class="i">pain</span>)
+<span onmouseout="hideTip(event, 'fs35', 403)" onmouseover="showTip(event, 'fs35', 403)" class="i">patsigns</span>
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs31', 404)" onmouseover="showTip(event, 'fs31', 404)" class="f">addPatientSign</span> <span onmouseout="hideTip(event, 'fs58', 405)" onmouseover="showTip(event, 'fs58', 405)" class="i">pain</span>
+<span class="o">|&gt;</span> (<span class="k">fun</span> <span onmouseout="hideTip(event, 'fs113', 406)" onmouseover="showTip(event, 'fs113', 406)" class="i">signs</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs96', 407)" onmouseover="showTip(event, 'fs96', 407)" class="i">patTreatm</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs97', 408)" onmouseover="showTip(event, 'fs97', 408)" class="f">evaluateProtocol</span> <span onmouseout="hideTip(event, 'fs86', 409)" onmouseover="showTip(event, 'fs86', 409)" class="i">painProtocol</span> <span onmouseout="hideTip(event, 'fs113', 410)" onmouseover="showTip(event, 'fs113', 410)" class="i">signs</span>)
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs97', 411)" onmouseover="showTip(event, 'fs97', 411)" class="f">evaluateProtocol</span> <span onmouseout="hideTip(event, 'fs86', 412)" onmouseover="showTip(event, 'fs86', 412)" class="i">painProtocol</span> (<span onmouseout="hideTip(event, 'fs35', 413)" onmouseover="showTip(event, 'fs35', 413)" class="i">patsigns</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs31', 414)" onmouseover="showTip(event, 'fs31', 414)" class="f">addPatientSign</span> <span onmouseout="hideTip(event, 'fs58', 415)" onmouseover="showTip(event, 'fs58', 415)" class="i">pain</span>)
 
 <span class="c">// Evaluate pain protocol for patient with pain but also liver failure</span>
-<span onmouseout="hideTip(event, 'fs35', 399)" onmouseover="showTip(event, 'fs35', 399)" class="i">patsigns</span>
-<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs31', 400)" onmouseover="showTip(event, 'fs31', 400)" class="f">addPatientSign</span> <span onmouseout="hideTip(event, 'fs58', 401)" onmouseover="showTip(event, 'fs58', 401)" class="i">pain</span>
-<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs31', 402)" onmouseover="showTip(event, 'fs31', 402)" class="f">addPatientSign</span> <span onmouseout="hideTip(event, 'fs60', 403)" onmouseover="showTip(event, 'fs60', 403)" class="i">lvf</span>
-<span class="o">|&gt;</span> (<span class="k">fun</span> <span onmouseout="hideTip(event, 'fs111', 404)" onmouseover="showTip(event, 'fs111', 404)" class="i">signs</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs93', 405)" onmouseover="showTip(event, 'fs93', 405)" class="i">patTreatm</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs94', 406)" onmouseover="showTip(event, 'fs94', 406)" class="f">evaluateProtocol</span> <span onmouseout="hideTip(event, 'fs86', 407)" onmouseover="showTip(event, 'fs86', 407)" class="i">painProtocol</span> <span onmouseout="hideTip(event, 'fs111', 408)" onmouseover="showTip(event, 'fs111', 408)" class="i">signs</span>)
+<span onmouseout="hideTip(event, 'fs35', 416)" onmouseover="showTip(event, 'fs35', 416)" class="i">patsigns</span>
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs31', 417)" onmouseover="showTip(event, 'fs31', 417)" class="f">addPatientSign</span> <span onmouseout="hideTip(event, 'fs58', 418)" onmouseover="showTip(event, 'fs58', 418)" class="i">pain</span>
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs31', 419)" onmouseover="showTip(event, 'fs31', 419)" class="f">addPatientSign</span> <span onmouseout="hideTip(event, 'fs60', 420)" onmouseover="showTip(event, 'fs60', 420)" class="i">lvf</span>
+<span class="o">|&gt;</span> (<span class="k">fun</span> <span onmouseout="hideTip(event, 'fs113', 421)" onmouseover="showTip(event, 'fs113', 421)" class="i">signs</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs96', 422)" onmouseover="showTip(event, 'fs96', 422)" class="i">patTreatm</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs97', 423)" onmouseover="showTip(event, 'fs97', 423)" class="f">evaluateProtocol</span> <span onmouseout="hideTip(event, 'fs86', 424)" onmouseover="showTip(event, 'fs86', 424)" class="i">painProtocol</span> <span onmouseout="hideTip(event, 'fs113', 425)" onmouseover="showTip(event, 'fs113', 425)" class="i">signs</span>)
+
+<span class="c">// First the patient has pain, then also liver failure</span>
+<span class="c">// Evaluate pain protocol for patient with pain but also liver failure</span>
+<span onmouseout="hideTip(event, 'fs35', 426)" onmouseover="showTip(event, 'fs35', 426)" class="i">patsigns</span>
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs31', 427)" onmouseover="showTip(event, 'fs31', 427)" class="f">addPatientSign</span> <span onmouseout="hideTip(event, 'fs58', 428)" onmouseover="showTip(event, 'fs58', 428)" class="i">pain</span>
+<span class="o">|&gt;</span> (<span class="k">fun</span> <span onmouseout="hideTip(event, 'fs113', 429)" onmouseover="showTip(event, 'fs113', 429)" class="i">signs</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs96', 430)" onmouseover="showTip(event, 'fs96', 430)" class="i">patTreatm</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs97', 431)" onmouseover="showTip(event, 'fs97', 431)" class="f">evaluateProtocol</span> <span onmouseout="hideTip(event, 'fs86', 432)" onmouseover="showTip(event, 'fs86', 432)" class="i">painProtocol</span> <span onmouseout="hideTip(event, 'fs113', 433)" onmouseover="showTip(event, 'fs113', 433)" class="i">signs</span>)
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs97', 434)" onmouseover="showTip(event, 'fs97', 434)" class="f">evaluateProtocol</span> <span onmouseout="hideTip(event, 'fs86', 435)" onmouseover="showTip(event, 'fs86', 435)" class="i">painProtocol</span> (<span onmouseout="hideTip(event, 'fs35', 436)" onmouseover="showTip(event, 'fs35', 436)" class="i">patsigns</span>
+        <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs31', 437)" onmouseover="showTip(event, 'fs31', 437)" class="f">addPatientSign</span> <span onmouseout="hideTip(event, 'fs58', 438)" onmouseover="showTip(event, 'fs58', 438)" class="i">pain</span>
+        <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs31', 439)" onmouseover="showTip(event, 'fs31', 439)" class="f">addPatientSign</span> <span onmouseout="hideTip(event, 'fs60', 440)" onmouseover="showTip(event, 'fs60', 440)" class="i">lvf</span>)
 </code></pre></td>
 </tr>
 </table>
@@ -610,7 +758,7 @@ a treatment should be applied.</p>
 <div class="tip" id="fs31">val addPatientSign : sgn:Sign -&gt; PatientSigns -&gt; PatientSigns<br /><br />Full name: Treatment.addPatientSign</div>
 <div class="tip" id="fs32">val sgn : Sign</div>
 <div class="tip" id="fs33">val sgns : Sign list</div>
-<div class="tip" id="fs34">val pat : Patient<br /><br />Full name: Treatment.pat</div>
+<div class="tip" id="fs34">val testPat : Patient<br /><br />Full name: Treatment.testPat</div>
 <div class="tip" id="fs35">val patsigns : PatientSigns<br /><br />Full name: Treatment.patsigns</div>
 <div class="tip" id="fs36">val printfn : format:Printf.TextWriterFormat&lt;&#39;T&gt; -&gt; &#39;T<br /><br />Full name: Microsoft.FSharp.Core.ExtraTopLevelOperators.printfn</div>
 <div class="tip" id="fs37">val createTarget : f:(Sign -&gt; bool) -&gt; Target<br /><br />Full name: Treatment.createTarget</div>
@@ -637,8 +785,8 @@ a treatment should be applied.</p>
 <div class="tip" id="fs58">val pain : Sign<br /><br />Full name: Treatment.pain</div>
 <div class="tip" id="fs59">val cvl : Sign<br /><br />Full name: Treatment.cvl</div>
 <div class="tip" id="fs60">val lvf : Sign<br /><br />Full name: Treatment.lvf</div>
-<div class="tip" id="fs61">val isTargetMet : Target -&gt; sgn:Sign -&gt; bool<br /><br />Full name: Treatment.isTargetMet</div>
-<div class="tip" id="fs62">val isConditionMet : Condition -&gt; sgn:Sign -&gt; bool<br /><br />Full name: Treatment.isConditionMet</div>
+<div class="tip" id="fs61">val targetIsMet : Target -&gt; sgn:Sign -&gt; bool<br /><br />Full name: Treatment.targetIsMet</div>
+<div class="tip" id="fs62">val conditionIsMet : Condition -&gt; sgn:Sign -&gt; bool<br /><br />Full name: Treatment.conditionIsMet</div>
 <div class="tip" id="fs63">val createOrder : ord:string -&gt; Order<br /><br />Full name: Treatment.createOrder</div>
 <div class="tip" id="fs64">val ord : string</div>
 <div class="tip" id="fs65">val pcm : Order<br /><br />Full name: Treatment.pcm</div>
@@ -664,30 +812,32 @@ a treatment should be applied.</p>
 <div class="tip" id="fs85">val append : list1:&#39;T list -&gt; list2:&#39;T list -&gt; &#39;T list<br /><br />Full name: Microsoft.FSharp.Collections.List.append</div>
 <div class="tip" id="fs86">val painProtocol : Protocol<br /><br />Full name: Treatment.painProtocol</div>
 <div class="tip" id="fs87">val bpProtocol : Protocol<br /><br />Full name: Treatment.bpProtocol</div>
-<div class="tip" id="fs88">val createPatientTreatment : pat:Patient -&gt; trts:Treatment list -&gt; PatientTreatment<br /><br />Full name: Treatment.createPatientTreatment</div>
-<div class="tip" id="fs89">val pat : Patient</div>
+<div class="tip" id="fs88">val createPatientTreatment : testPat:Patient -&gt; trts:Treatment list -&gt; PatientTreatment<br /><br />Full name: Treatment.createPatientTreatment</div>
+<div class="tip" id="fs89">val testPat : Patient</div>
 <div class="tip" id="fs90">val trts : Treatment list</div>
 <div class="tip" id="fs91">val addPatientTreatment : trt:Treatment -&gt; PatientTreatment -&gt; PatientTreatment<br /><br />Full name: Treatment.addPatientTreatment</div>
 <div class="tip" id="fs92">val exists : predicate:(&#39;T -&gt; bool) -&gt; list:&#39;T list -&gt; bool<br /><br />Full name: Microsoft.FSharp.Collections.List.exists</div>
-<div class="tip" id="fs93">val patTreatm : PatientTreatment<br /><br />Full name: Treatment.patTreatm</div>
-<div class="tip" id="fs94">val evaluateProtocol : prot:Protocol -&gt; PatientSigns -&gt; patTr:PatientTreatment -&gt; PatientTreatment<br /><br />Full name: Treatment.evaluateProtocol</div>
-<div class="tip" id="fs95">val prot : Protocol</div>
-<div class="tip" id="fs96">val patTr : PatientTreatment</div>
-<div class="tip" id="fs97">val eval : (Protocol -&gt; PatientTreatment -&gt; PatientTreatment)</div>
-<div class="tip" id="fs98">val xs : (Condition list * Treatment) list</div>
-<div class="tip" id="fs99">val acc : PatientTreatment</div>
-<div class="tip" id="fs100">val h : Condition list * Treatment</div>
-<div class="tip" id="fs101">val rest : (Condition list * Treatment) list</div>
-<div class="tip" id="fs102">val fst : tuple:(&#39;T1 * &#39;T2) -&gt; &#39;T1<br /><br />Full name: Microsoft.FSharp.Core.Operators.fst</div>
-<div class="tip" id="fs103">val snd : tuple:(&#39;T1 * &#39;T2) -&gt; &#39;T2<br /><br />Full name: Microsoft.FSharp.Core.Operators.snd</div>
-<div class="tip" id="fs104">val trg : Target</div>
-<div class="tip" id="fs105">val condMet : bool</div>
-<div class="tip" id="fs106">val forall : predicate:(&#39;T -&gt; bool) -&gt; list:&#39;T list -&gt; bool<br /><br />Full name: Microsoft.FSharp.Collections.List.forall</div>
-<div class="tip" id="fs107">val cnd : Condition</div>
-<div class="tip" id="fs108">val targetNotMet : bool</div>
-<div class="tip" id="fs109">val not : value:bool -&gt; bool<br /><br />Full name: Microsoft.FSharp.Core.Operators.not</div>
-<div class="tip" id="fs110">val hasNotTrt : bool</div>
-<div class="tip" id="fs111">val signs : PatientSigns</div>
+<div class="tip" id="fs93">val removePatientTreatment : trt:Treatment -&gt; PatientTreatment -&gt; PatientTreatment<br /><br />Full name: Treatment.removePatientTreatment</div>
+<div class="tip" id="fs94">val filter : predicate:(&#39;T -&gt; bool) -&gt; list:&#39;T list -&gt; &#39;T list<br /><br />Full name: Microsoft.FSharp.Collections.List.filter</div>
+<div class="tip" id="fs95">val not : value:bool -&gt; bool<br /><br />Full name: Microsoft.FSharp.Core.Operators.not</div>
+<div class="tip" id="fs96">val patTreatm : PatientTreatment<br /><br />Full name: Treatment.patTreatm</div>
+<div class="tip" id="fs97">val evaluateProtocol : prot:Protocol -&gt; PatientSigns -&gt; patTr:PatientTreatment -&gt; PatientTreatment<br /><br />Full name: Treatment.evaluateProtocol</div>
+<div class="tip" id="fs98">val prot : Protocol</div>
+<div class="tip" id="fs99">val patTr : PatientTreatment</div>
+<div class="tip" id="fs100">val eval : (Protocol -&gt; PatientTreatment -&gt; PatientTreatment)</div>
+<div class="tip" id="fs101">val xs : (Condition list * Treatment) list</div>
+<div class="tip" id="fs102">val acc : PatientTreatment</div>
+<div class="tip" id="fs103">val h : Condition list * Treatment</div>
+<div class="tip" id="fs104">val rest : (Condition list * Treatment) list</div>
+<div class="tip" id="fs105">val fst : tuple:(&#39;T1 * &#39;T2) -&gt; &#39;T1<br /><br />Full name: Microsoft.FSharp.Core.Operators.fst</div>
+<div class="tip" id="fs106">val snd : tuple:(&#39;T1 * &#39;T2) -&gt; &#39;T2<br /><br />Full name: Microsoft.FSharp.Core.Operators.snd</div>
+<div class="tip" id="fs107">val trg : Target</div>
+<div class="tip" id="fs108">val condMet : bool</div>
+<div class="tip" id="fs109">val forall : predicate:(&#39;T -&gt; bool) -&gt; list:&#39;T list -&gt; bool<br /><br />Full name: Microsoft.FSharp.Collections.List.forall</div>
+<div class="tip" id="fs110">val cnd : Condition</div>
+<div class="tip" id="fs111">val targetMet : bool</div>
+<div class="tip" id="fs112">val hasNotTrt : bool</div>
+<div class="tip" id="fs113">val signs : PatientSigns</div>
 
         </div>
         <div class="span3">
