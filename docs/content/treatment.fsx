@@ -57,8 +57,8 @@ central venous line.
 type Sign =
     | BloodPressure of int
     | PainScore of int
-    | LiverFailure of bool
-    | CentralVenousLine of bool
+    | LiverFailure
+    | CentralVenousLine
 
 (**
 So, a patient can have zero or more signs.
@@ -90,7 +90,9 @@ and a boolean
 
 /// A Condition is a whether a Target
 /// is met or not.
-type Condition = Condition of Target * bool
+type Condition =
+    | Has of Target
+    | HasNot of Target
 
 (**
 The order is the actual treatment order that is used
@@ -154,7 +156,9 @@ added or removed, or the patient treatment is unchanged.
 /// in Protocol are met and add Treatment if
 /// Target is not met or remove if
 /// Target is not met
-type EvaluateProtocol = Evaluate of (Protocol -> PatientSigns -> PatientTreatment -> PatientTreatment)
+type EvaluateProtocol =
+    Evaluate of
+        (Protocol -> PatientSigns -> PatientTreatment -> PatientTreatment)
 
 (**
 Implementation of the model
@@ -177,8 +181,6 @@ Next we can create some patient signs.
 let createSign c s = s |> c
 let createBloodPressure     = createSign BloodPressure
 let createPainScore         = createSign PainScore
-let createLiverFailure      = createSign LiverFailure
-let createCentralVenousLine = createSign CentralVenousLine
 
 (**
 And then we can connect those signs to a specific patient.
@@ -197,6 +199,7 @@ let testPat = "Test Patient" |> createPatient
 // Create patient signs for that patient
 let patsigns = testPat |> createPatienSigns
 
+(*** hide ***)
 printfn "%A" patsigns
 
 (**
@@ -214,19 +217,23 @@ let createPainScoreTarget pred = createTarget (fun sgn ->
     match sgn with
     | PainScore ps -> ps |> pred
     | _ -> true)
+
 // Create conditions
-let createCentralVenousLineCondition b =
+let createCentralVenousLineCondition c : Condition =
     (createTarget (fun sgn ->
             match sgn with
-            | CentralVenousLine cvl -> cvl
-            | _ -> false), b) |> Condition
-let createLiverFailureCondition b =
+            | CentralVenousLine -> true
+            | _ -> false)) |> c
+let createLiverFailureCondition c : Condition =
     (createTarget (fun sgn ->
             match sgn with
-            | LiverFailure lvf -> lvf
-            | _ -> false), b) |> Condition
-let createBloodPressureCondition pred b =
-    (createTarget (fun sgn -> match sgn with | BloodPressure bpl -> bpl |> pred | _ -> true), b) |> Condition
+            | LiverFailure -> true
+            | _ -> false)) |> c
+let createBloodPressureCondition pred c : Condition =
+    (createTarget (fun sgn ->
+            match sgn with
+            | BloodPressure bpl -> bpl |> pred
+            | _ -> true)) |> c
 
 (**
 A blood pressure target could be the intention to keep the
@@ -250,9 +257,9 @@ a treatment should be applied.
 *)
 
 // Condition targets
-let hasCvlCond  = createCentralVenousLineCondition true
-let noLvfCond   = createLiverFailureCondition false
-let bpCondSt160 = createBloodPressureCondition (fun bp -> bp < 160) true
+let hasCvlCond  = createCentralVenousLineCondition Has
+let noLvfCond   = createLiverFailureCondition HasNot
+let bpCondSt160 = createBloodPressureCondition (fun bp -> bp < 160) Has
 
 (**
 Lets create a set of possible patient signs.
@@ -261,8 +268,8 @@ Lets create a set of possible patient signs.
 // Signs
 let bp40 = createBloodPressure 40
 let pain = createPainScore 3
-let cvl = createCentralVenousLine true
-let lvf = createLiverFailure true
+let cvl  = CentralVenousLine
+let lvf  = LiverFailure
 
 (**
 We the can add these signs to the test patient.
@@ -279,16 +286,24 @@ patsigns
 We need to determine whether a target is met or a condition exists.
 *)
 
-// Check if target is met
-let targetIsMet (Target(f)) sgn = sgn |> f
+// Check if target is met according to signs
+let targetIsMet (Target(f)) sgns =
+    sgns |> List.forall f
 
-// Check if condition is met
-let conditionIsMet (Condition(Target(f), b)) sgn = sgn |> f = b
+// Check if condition is met according to signs
+let conditionIsMet cond sgns =
+    match cond with
+    | Has (Target(f))    -> sgns |> List.exists f
+    | HasNot (Target(f)) ->
+        if sgns |> List.isEmpty then true
+        else sgns |> List.exists f |> not
 
-printfn "Target bp > 60 with bp: %A is met: %A"  bp40 (bp40 |> targetIsMet bpTargetLt60)
-printfn "Target bp < 160 with bp: %A is met: %A" bp40 (bp40 |> conditionIsMet bpCondSt160)
-printfn "Condition central venous line with cvl: %A is met: %A"      cvl (cvl |> conditionIsMet hasCvlCond)
-printfn "Condition liver failure with no liverfailure: %A is met %A" lvf (lvf |> conditionIsMet noLvfCond)
+(*** hide ***)
+printfn "Target bp > 60 with bp: %A is met: %A"  [bp40] ([bp40] |> targetIsMet bpTargetLt60)
+printfn "Target bp < 160 with bp: %A is met: %A" [bp40] ([bp40] |> conditionIsMet bpCondSt160)
+printfn "Condition central venous line with cvl: %A is met: %A"      [cvl] ([cvl] |> conditionIsMet hasCvlCond)
+printfn "Condition liver failure with no liverfailure: %A is met %A" [lvf] ([lvf] |> conditionIsMet noLvfCond)
+printfn "Condition liver failure with no liverfailure: %A is met %A" [] ([] |> conditionIsMet noLvfCond)
 
 (**
 To define treatmet, orders are needed.
@@ -351,8 +366,10 @@ and the patient is in pain (the target)
 // Create a pain protocol
 let painProtocol =
     pcmTreat
-    |> createProtocol [noLvfCond]      // Give pcm if no liver failure and pain
-    |> nextStepInProtocol [] morfTreat // Give morfine if still pain
+    // Give pcm if no liver failure and pain
+    |> createProtocol [noLvfCond]
+    // Give morfine if still pain
+    |> nextStepInProtocol [] morfTreat
 
 (**
 A blood pressure protocol looks like:
@@ -366,8 +383,10 @@ is lower than 60, a contraindication is a bloodpressure above 160
 // Create a blood pressure protocol
 let bpProtocol =
     dopaTreat
-    |> createProtocol [bpCondSt160]                          // Start with dopa if bp < 60 but no bp > 160
-    |> nextStepInProtocol [hasCvlCond; bpCondSt160] norTreat // Add nor if cvl and no bp > 160
+    // Start with dopa if bp < 60 but no bp > 160
+    |> createProtocol [bpCondSt160]
+    // Add nor if cvl and no bp > 160
+    |> nextStepInProtocol [hasCvlCond; bpCondSt160] norTreat
 
 (**
 A patient can be associated with a list of treatment. Treatment
@@ -375,7 +394,8 @@ can be added an removed from that list.
 *)
 
 // Create and add to patient treatment
-let createPatientTreatment testPat trts = (testPat, trts) |> PatientTreatment
+let createPatientTreatment testPat trts =
+    (testPat, trts) |> PatientTreatment
 // Add the treatment if not allready there
 let addPatientTreatment trt (PatientTreatment(testPat, trts)) =
     if trts |> List.exists (eqsTreatment trt) then
@@ -388,6 +408,20 @@ let removePatientTreatment trt (PatientTreatment(testPat, trts)) =
 
 // Test patient treatment
 let patTreatm = createPatientTreatment testPat []
+
+(** hidden **)
+let printTreatment (PatientTreatment(pat, trts)) =
+    let n = let (Patient n) = pat in n
+    printfn "------------------------"
+    printfn ""
+    printfn "Treatment for: %s" n
+    for trt in trts do
+        let ord = let (Treatment(_, ord)) = trt in ord
+        let s = let (Order(s)) = ord in s
+        printfn "- %s" s
+    printfn ""
+    printfn "------------------------"
+
 
 (**
 Finally, the algorythm to evaluate the patient treatment
@@ -408,13 +442,15 @@ let evaluateProtocol prot (PatientSigns(_, sgns)) patTr =
             let trg = let (Treatment(trg, _)) = trt in trg
             // Check whether all conditions are met
             // according to the patient signals
-            let condMet = sgns |> List.forall (fun sgn ->
-                cnds |> List.forall (fun cnd ->
-                    sgn |> conditionIsMet cnd))
+            let condMet =
+                cnds
+                |> List.forall (fun cnd ->
+                    sgns |> conditionIsMet cnd)
             // Check whether target is met according
             // to the patient signals
-            let targetMet = sgns |> List.forall (fun sgn ->
-                sgn |> targetIsMet trg)
+            let targetMet = sgns |> targetIsMet trg
+            printfn "Conditions met: %b, TargetMet: %b" condMet targetMet
+            printfn "For treatment: %A" (let (Treatment(_, ord)) = trt in ord)
             match condMet, targetMet with
             // condition met, target not met
             | true, false ->
@@ -434,7 +470,7 @@ let evaluateProtocol prot (PatientSigns(_, sgns)) patTr =
             | true, true
             // or conditions not met
             | false, _ ->
-                // Remove the treatment
+                // Remove the treatment if there
                 acc
                 |> removePatientTreatment trt
                 // And continue the evaluation
@@ -450,34 +486,101 @@ Test the implementation
 
 (**
 The implementation is tested with some examples
+
+The first example tests what happens when the pain
+protocol is applied to a patient without any signs.
 *)
 
 // Evaluate pain protocol for patient without signs
+// Expect: no treatment
 patTreatm
 |> evaluateProtocol painProtocol patsigns
+|> printTreatment
 
 // Evaluate pain protocol for patient with pain
+// Expect: paracetamol
 patsigns
 |> addPatientSign pain
 |> (fun signs -> patTreatm |> evaluateProtocol painProtocol signs)
+|> printTreatment
 
-// Evaluate pain protocol for patient with pain and allready pcm
+// Evaluate pain protocol for patient with pain and allready paracetemol
+// Expect: paracetamol and morfine
 patsigns
 |> addPatientSign pain
 |> (fun signs -> patTreatm |> evaluateProtocol painProtocol signs)
 |> evaluateProtocol painProtocol (patsigns |> addPatientSign pain)
+|> printTreatment
 
 // Evaluate pain protocol for patient with pain but also liver failure
+// Expect: morfine
 patsigns
 |> addPatientSign pain
 |> addPatientSign lvf
 |> (fun signs -> patTreatm |> evaluateProtocol painProtocol signs)
+|> printTreatment
 
 // First the patient has pain, then also liver failure
 // Evaluate pain protocol for patient with pain but also liver failure
+// Expect: first paracatamol, then only morfine
 patsigns
 |> addPatientSign pain
 |> (fun signs -> patTreatm |> evaluateProtocol painProtocol signs)
+|> (fun pt -> pt |> printTreatment; pt)
 |> evaluateProtocol painProtocol (patsigns
         |> addPatientSign pain
         |> addPatientSign lvf)
+|> printTreatment
+
+// Evaluate pain protocol for patient with low blood pressure
+// Expect: No treatment
+patsigns
+|> addPatientSign bp40
+|> (fun signs -> patTreatm |> evaluateProtocol painProtocol signs)
+|> printTreatment
+
+// Evaluate pain protocol for patient with pain and low blood pressure
+// Expect: paracetamol
+patsigns
+|> addPatientSign bp40
+|> addPatientSign pain
+|> (fun signs -> patTreatm |> evaluateProtocol painProtocol signs)
+|> printTreatment
+
+// Evaluate pain protocol and blood pressure protocol
+// for patient with pain and low blood pressure
+// Expect: paracetamol and dopamine
+patsigns
+|> addPatientSign bp40
+|> addPatientSign pain
+|> (fun signs ->
+        patTreatm
+        |> evaluateProtocol painProtocol signs
+        |> evaluateProtocol bpProtocol signs)
+|> printTreatment
+
+// Evaluate a blood pressure protocol for a patient
+// with low blood pressure, which still has low blood
+// pressure during the second evaluation but has no
+// central venous line
+// Expect: dopamine and then still only dopamine
+patsigns
+|> addPatientSign bp40
+|> (fun signs ->
+        patTreatm
+        |> evaluateProtocol bpProtocol signs
+        |> (fun pt -> pt |> printTreatment; pt)
+        |> evaluateProtocol bpProtocol signs
+        |> printTreatment)
+
+// Now the patient has a central venous line
+// Expect: dopamine, then dopamine and noradrenalin
+patsigns
+|> addPatientSign bp40
+|> addPatientSign cvl
+|> (fun signs ->
+        patTreatm
+        |> evaluateProtocol bpProtocol signs
+        |> (fun pt -> pt |> printTreatment; pt)
+        |> evaluateProtocol bpProtocol signs
+        |> printTreatment)
