@@ -409,7 +409,7 @@ let removePatientTreatment trt (PatientTreatment(testPat, trts)) =
 // Test patient treatment
 let patTreatm = createPatientTreatment testPat []
 
-(** hidden **)
+(*** hidden ***)
 let printTreatment (PatientTreatment(pat, trts)) =
     let n = let (Patient n) = pat in n
     printfn "------------------------"
@@ -449,8 +449,10 @@ let evaluateProtocol prot (PatientSigns(_, sgns)) patTr =
             // Check whether target is met according
             // to the patient signals
             let targetMet = sgns |> targetIsMet trg
+
             printfn "Conditions met: %b, TargetMet: %b" condMet targetMet
             printfn "For treatment: %A" (let (Treatment(_, ord)) = trt in ord)
+
             match condMet, targetMet with
             // condition met, target not met
             | true, false ->
