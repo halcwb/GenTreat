@@ -6,12 +6,12 @@ Top Down Design of Treatment
 This literate script defines the top down design of a library
 that facilitates treatment of patients.
 
-Patient treatment is a continuous loop of the following steps:
+Patient treatment is a continuous loop of the following processes:
 
 1. Get the patient (and patient data)
 2. Get decision support (drug repositories, protocols, etc...)
 3. Determine the treatment targets
-4. Add or remove treatment from existing patient treatment
+4. Add or remove treatment from existing patient treatment plan
 5. Plan the treatment
 6. Administer treatment
 7. Evaluate the treatment (is essentially step 1 - 4)
@@ -22,6 +22,23 @@ Patient treatment is a continuous loop of the following steps:
 ** The Medication Cycle **
 <img src="https://docs.google.com/drawings/d/1NP8mq1Pu6UYbBp51DUmkQoo8tz3769VDbiEoDoPQ2IE/pub?w=744&amp;h=520">
 
+</br>
+</br>
+
+GenTreat combines in the *medication cycle* decision support with treatment
+evaluation and order generation.
+
+</br>
+</br>
+
+**Contents:**
+
+* [The domain model](#The-domain-model)
+* [Implementation of the Model](#Implementation-of-the-model)
+* [Test the implementation](#Test-the-implementation)
+
+</br>
+</br>
 *)
 
 (**
@@ -31,7 +48,9 @@ The domain model
 
 (**
 A patient type is needed to model the patient that is
-receiving treatment.
+receiving treatment. The patient type needs to contain
+data relevant to identify a patient for treatment. For
+now a simple string is used.
 *)
 /// The patient who is receiving treatment
 type Patient = Patient of string
@@ -39,7 +58,7 @@ type Patient = Patient of string
 (**
 Next a patient exhibits signs, these signs can be
 used to define targets and/or conditions.
-
+</br>
 For example:
 
 * Bloodpressure: target is keeping the bloodpressure
@@ -51,9 +70,14 @@ experiences
 * Central Venous Line: whether or not a patient has a
 central venous line.
 
+But signs can also be generalized as any patient data that
+could influence treatment, like age, weight, past medical
+history, etc..
+</br>
 *)
 
-/// A Sign is an patient sympton or measurement
+/// A Sign is any patient sympton or measurement
+/// relevant to treatment
 type Sign =
     | BloodPressure of int
     | PainScore of int
@@ -61,35 +85,48 @@ type Sign =
     | CentralVenousLine
 
 (**
-So, a patient can have zero or more signs.
+A patient is associated with a list of signs.
+A patient can have zero or more signs.
 *)
 
-/// The Sign list a Patient has
+/// The list of signs a patient exhibits
 type PatientSigns = PatientSigns of Patient * Sign list
 
 (**
-A target is defigned by whether a target is reached
-or not. Given a patient sign this is determined.
+A target is defigned by whether a target is reached,
+or not. Given a patient sign this is determined by a
+function that returnes a true or false. When the target
+is a blood pressure above 60, then the function will
+evaluate the blood pressure sign an return true if the
+blood pressure is above 60. If the sign is any other sign
+it will also return true.
+
+So, a treatment indication is explicitly a target that is not met.
 *)
 
-/// The target to achieve by Treatment
-/// For example: </br>
-/// blood pressure > 60 mmHg </br>
+/// The Target to achieve by treatment
+/// For example:
+/// blood pressure > 60 mmHg
 /// pain score < 1
 type Target  = Target of (Sign -> bool)
 
 (**
-A condition is defined as a state the patient is in.
+A condition is defined as a state the patient should
+have or not have. This can be modelled by the presence or
+absence of a target.
 
 For example, the condition liverfailure is defined by
-the sign liverfailure is true, while the absence is
-defined by liverfailure is false. Absence or presence
-of the condition is checked by the combination of a target
-and a boolean
+the sign Liverfailure. Absence or presence of a condition
+is determined by matching a sign with the target.
+
+In the case of liverfailure presence of a sign is enough.
+But to describe for example low blood pressure, as defined
+by the sign blood pressure, which is a number, a target is
+needed.
 *)
 
-/// A Condition is a whether a Target
-/// is met or not.
+/// A Condition is determined by
+/// the result of a Target
 type Condition =
     | Has of Target
     | HasNot of Target
@@ -97,18 +134,18 @@ type Condition =
 (**
 The order is the actual treatment order that is used
 to achieve a target. This can be a medication order but
-also a order concerning nutrition, ventilation etc..
+can also be an order concerning nutrition, ventilation etc..
 *)
 
-/// The order by which the Target can be achieved
+/// The Order by which the Target can be achieved
 type Order = Order of string
 
 (**
-So, a treatment is the combination of a target and an order.
-In which the order is used to achieve the target. In medical terms
+So, a treatment is the combination of a target and an order,
+in which the order is used to achieve the target. In medical terms
 the target can also be viewed as the indication. Only, the
 indication can be low blood pressure, while a target can be
-more specific, a blood pressure above 60.
+more specific, a blood pressure above 60, that can be evaluated.
 *)
 
 /// An Order to achieve a Target
@@ -131,15 +168,17 @@ treatment.
 For example, a patien is in pain, has no liverfaiure, then
 treatment with paracetamol can be commenced. However, when the
 patient has liver failure, paracetamol might be the wrong choice.
+The protocol for paracetamol can be defined by the condition *has
+not liverfailure* and the target *pain score > 1*
 
-Then next item in the protocol list can be morfine. So, when
-the first step, paracetamol is not feasible, the next step,
-morfine can be applied.
+The next item in the protocol list could, for example, be
+morfine. So, when the first step, paracetamol is not feasible,
+the next step, morfine can be applied.
 *)
 
-/// A protocol is a list of Sign and a Treatment
-/// ordered by precedence. If all Sign in the
-/// Sign list is met and the Target is not met
+/// A protocol is a list of Conditions and a Treatment
+/// ordered by precedence. If all Conditions in the
+/// Condition list are met and the Target is not met
 /// then the Treatment can be applied.
 type Protocol =  Protocol of (Condition list * Treatment) list
 
@@ -154,15 +193,16 @@ added or removed, or the patient treatment is unchanged.
 
 /// Evaluate a Patient whether all Targets
 /// in Protocol are met and add Treatment if
-/// Target is not met or remove if
-/// Target is not met
+/// Target is not met and Conditions are met
+/// or remove the Treatment if the Target is
+/// met or Conditions are not met.
 type EvaluateProtocol =
-    Evaluate of
         (Protocol -> PatientSigns -> PatientTreatment -> PatientTreatment)
 
 (**
 Implementation of the model
 ---------------------------
+The following describes a sample implementation of the domain model.
 *)
 
 (**
@@ -174,7 +214,7 @@ the patient id.
 let createPatient s = s |> Patient
 
 (**
-Next we can create some patient signs.
+Next we have to create some patient signs.
 *)
 
 // Create signs
@@ -203,7 +243,9 @@ let patsigns = testPat |> createPatienSigns
 printfn "%A" patsigns
 
 (**
-Next we define some targets and conditions to construct protocols.
+Targets and conditions are needed to construct protocols. In this
+case we create a blood pressure and pain target. And we create a
+liver failure condition and a central venous line condition.
 *)
 
 // Create targets
@@ -236,8 +278,10 @@ let createBloodPressureCondition pred c : Condition =
             | _ -> true)) |> c
 
 (**
-A blood pressure target could be the intention to keep the
-blood pressure above 60.
+A specific blood pressure target could be the intention to keep the
+blood pressure above 60. So the *target function* checks whether a
+blood pressure sign is above 60. When the blood pressure falls below
+60 the target is not met and the function returns false.
 *)
 
 // Bloodpressure targets
@@ -245,7 +289,8 @@ let bpTargetLt60  = createBloodPressureTarget (fun bp -> bp > 60)
 
 (**
 Also, we want the patient to experience minimal or no pain as indicated
-by a painscore of 1 or lower.
+by a painscore of 1 or lower. Note that the target can be modified by
+setting a threshold.
 *)
 
 // Pain target
@@ -254,6 +299,15 @@ let noPain = createPainScoreTarget (fun sc -> sc <= 1)
 (**
 There are also some conditions that can determine whether or not
 a treatment should be applied.
+For example:
+
+*  When the patient has a central venous line, noradrenaline can
+be given.
+* When the patient has no liverfailure, paracetamol can be given.
+* When the patient has a blood pressure below 160, inotropics are
+not contra-indicated.
+
+Note, that these are just examples, not real medical constructs.
 *)
 
 // Condition targets
@@ -262,7 +316,7 @@ let noLvfCond   = createLiverFailureCondition HasNot
 let bpCondSt160 = createBloodPressureCondition (fun bp -> bp < 160) Has
 
 (**
-Lets create a set of possible patient signs.
+Lets create a set of possible patient signs a patient can show.
 *)
 
 // Signs
@@ -283,7 +337,10 @@ patsigns
 |> addPatientSign lvf
 
 (**
-We need to determine whether a target is met or a condition exists.
+We now have patient signs, targets and conditions. But we need to
+determine whether a target is met or a condition exists. The below
+functions evaluate a list of signs and return whether a target or
+condition is met.
 *)
 
 // Check if target is met according to signs
@@ -306,7 +363,9 @@ printfn "Condition liver failure with no liverfailure: %A is met %A" [lvf] ([lvf
 printfn "Condition liver failure with no liverfailure: %A is met %A" [] ([] |> conditionIsMet noLvfCond)
 
 (**
-To define treatmet, orders are needed.
+To define treatment, orders are needed to achieve the treatment
+target. In this case we create parecetamol, morfine, dopamine and
+noradrenaline orders.
 *)
 
 // Create an Order
@@ -319,7 +378,7 @@ let dopa = "dopamine"      |> createOrder
 let nor  = "noradrenaline" |> createOrder
 
 (**
-Treatment is created by combining a target with an orderd.
+Treatment is created simply by combining a target with an order.
 *)
 
 // Create a Treatment
@@ -327,14 +386,17 @@ let createTreatment targ ord = (targ, ord) |> Treatment
 
 (**
 A treatment is the same as some other treatment when the orders
-are the same (targets could differ).
+are the same (targets could differ). But the comparison is needed
+to determine if the patient allready recieves treatment, i.e. order.
 *)
 
 let eqsTreatment (Treatment(_, ord1)) (Treatment(_, ord2)) = ord1 = ord2
 
 (**
 Here, treatment with paracetamol, morfine, dopamine and noradrenalin
-are created.
+are created. Paracetamol and morfine are used to relieve pain.
+Dopamine and noradrenalin can be used to maintain the blood pressure
+above 60.
 *)
 
 // Create treatement examples
@@ -359,8 +421,10 @@ A pain protocol could look like this:
 
 1. The first step is paracetamol, if no liver failure present
 and the patient is in pain (the target)
-2. The next step is to add or replace with morfine.
+2. The next step is to add morfine or replace paracetamol with morfine.
 
+Note that in this case morfine doesn't have a condition other than
+that first paracetamol should be evaluated.
 *)
 
 // Create a pain protocol
@@ -377,6 +441,7 @@ A blood pressure protocol looks like:
 1. First start with dopammine when the blood pressure
 is lower than 60, a contraindication is a bloodpressure above 160
 2. Next add noradrenalin if the patient has a central venous line
+and, again, the bloodpressure is not above 160
 
 *)
 
@@ -390,7 +455,8 @@ let bpProtocol =
 
 (**
 A patient can be associated with a list of treatment. Treatment
-can be added an removed from that list.
+can be added an removed from that list. The patient treatment is
+the subject and result of an evaluation with a protocol.
 *)
 
 // Create and add to patient treatment
@@ -406,30 +472,41 @@ let removePatientTreatment trt (PatientTreatment(testPat, trts)) =
     (testPat, trts |> List.filter((eqsTreatment trt) >> not))
     |> PatientTreatment
 
-// Test patient treatment
+// The treatment of the test patient example.
 let patTreatm = createPatientTreatment testPat []
 
-(*** hidden ***)
-let printTreatment (PatientTreatment(pat, trts)) =
+(*** hide ***)
+let printTreatment f (PatientTreatment(pat, trts)) =
     let n = let (Patient n) = pat in n
-    printfn "------------------------"
-    printfn ""
-    printfn "Treatment for: %s" n
+    sprintf "------------------------" |> f
+    sprintf "" |> f
+    sprintf "Treatment for: %s" n |> f
     for trt in trts do
         let ord = let (Treatment(_, ord)) = trt in ord
         let s = let (Order(s)) = ord in s
-        printfn "- %s" s
-    printfn ""
-    printfn "------------------------"
+        sprintf "- %s" s |> f
+    sprintf "" |> f
+    sprintf "------------------------" |> f
 
 
 (**
-Finally, the algorythm to evaluate the patient treatment
-according to a protocol.
+Finally, patient treatment can be evaluated with a protocol
+that uses patient signs to determine wheter conditions and
+targets are met.
+
+The algorythm will:
+
+* Add a treatment when conditions *are met* and the target
+is *not met*
+* Remove a treatment when either conditions *are not met*
+and/or the target *is met*
+
+When a treatment allready is applied, the next item in the
+protocol is used.
 *)
 
 // Evaluate a protocols
-let evaluateProtocol prot (PatientSigns(_, sgns)) patTr =
+let evaluateProtocol f prot (PatientSigns(_, sgns)) patTr =
     let rec eval (Protocol(xs)) acc =
         match xs with
         | [] -> acc
@@ -450,8 +527,10 @@ let evaluateProtocol prot (PatientSigns(_, sgns)) patTr =
             // to the patient signals
             let targetMet = sgns |> targetIsMet trg
 
-            printfn "Conditions met: %b, TargetMet: %b" condMet targetMet
-            printfn "For treatment: %A" (let (Treatment(_, ord)) = trt in ord)
+            sprintf "Conditions met: %b, TargetMet: %b" condMet targetMet
+            |> f
+            sprintf "For treatment: %A" (let (Treatment(_, ord)) = trt in ord)
+            |> f
 
             match condMet, targetMet with
             // condition met, target not met
@@ -483,71 +562,204 @@ let evaluateProtocol prot (PatientSigns(_, sgns)) patTr =
 (**
 Test the implementation
 -----------------------
+The following code blocks test the implementation by examples.
+In each code block the result of the evaluation is shown
+as it appears in the *fsi* (code output window).
 *)
 
 
-(**
-The implementation is tested with some examples
+(*** hide ***)
+let f = printfn "%s" // printfn "// [fsi: %s ]"
+let evaluate = evaluateProtocol f
+let print    = "" |> f; printTreatment f
 
+(**
 The first example tests what happens when the pain
 protocol is applied to a patient without any signs.
+
+The output reads that conditions are met, but
+targets also are met, so, there is no indication
+for treatment.
 *)
 
 // Evaluate pain protocol for patient without signs
 // Expect: no treatment
 patTreatm
-|> evaluateProtocol painProtocol patsigns
-|> printTreatment
+|> evaluate painProtocol patsigns
+|> print
+//
+// [fsi: Conditions met: true, TargetMet: true ]
+// [fsi: For treatment: Order "paracetamol" ]
+// [fsi: Conditions met: true, TargetMet: true ]
+// [fsi: For treatment: Order "morfine" ]
+// [fsi: ------------------------ ]
+// [fsi:  ]
+// [fsi: Treatment for: Test Patient ]
+// [fsi:  ]
+// [fsi:  ]
+// [fsi: ------------------------ ]
+
+(**
+However, if a patient is in pain, given a painscore
+of 3, then paracetamol is added to the treatment in
+absence of liverfailure.
+*)
 
 // Evaluate pain protocol for patient with pain
 // Expect: paracetamol
 patsigns
 |> addPatientSign pain
-|> (fun signs -> patTreatm |> evaluateProtocol painProtocol signs)
-|> printTreatment
+|> (fun signs -> patTreatm |> evaluate painProtocol signs)
+|> print
+//
+// [fsi: Conditions met: true, TargetMet: false ]
+// [fsi: For treatment: Order "paracetamol" ]
+// [fsi: ------------------------ ]
+// [fsi:  ]
+// [fsi: Treatment for: Test Patient ]
+// [fsi: - paracetamol ]
+// [fsi:  ]
+// [fsi: ------------------------ ]
+
+(**
+When the patient still has pain, and also has paracetamol,
+the next step is to add morfine.
+*)
 
 // Evaluate pain protocol for patient with pain and allready paracetemol
 // Expect: paracetamol and morfine
 patsigns
 |> addPatientSign pain
-|> (fun signs -> patTreatm |> evaluateProtocol painProtocol signs)
-|> evaluateProtocol painProtocol (patsigns |> addPatientSign pain)
-|> printTreatment
+|> (fun signs -> patTreatm |> evaluate painProtocol signs)
+|> evaluate painProtocol (patsigns |> addPatientSign pain)
+|> print
+//
+// [fsi: Conditions met: true, TargetMet: false ]
+// [fsi: For treatment: Order "paracetamol" ]
+// [fsi: Conditions met: true, TargetMet: false ]
+// [fsi: For treatment: Order "paracetamol" ]
+// [fsi: Conditions met: true, TargetMet: false ]
+// [fsi: For treatment: Order "morfine" ]
+// [fsi: ------------------------ ]
+// [fsi:  ]
+// [fsi: Treatment for: Test Patient ]
+// [fsi: - morfine ]
+// [fsi: - paracetamol ]
+// [fsi:  ]
+// [fsi: ------------------------ ]
+
+(**
+A patient with pain but also liverfailure will skip the
+paracetamol step but continue with morfine.
+*)
 
 // Evaluate pain protocol for patient with pain but also liver failure
 // Expect: morfine
 patsigns
 |> addPatientSign pain
 |> addPatientSign lvf
-|> (fun signs -> patTreatm |> evaluateProtocol painProtocol signs)
-|> printTreatment
+|> (fun signs -> patTreatm |> evaluate painProtocol signs)
+|> print
+//
+// [fsi: Conditions met: false, TargetMet: false ]
+// [fsi: For treatment: Order "paracetamol" ]
+// [fsi: Conditions met: true, TargetMet: false ]
+// [fsi: For treatment: Order "morfine" ]
+// [fsi: ------------------------ ]
+// [fsi:  ]
+// [fsi: Treatment for: Test Patient ]
+// [fsi: - morfine ]
+// [fsi:  ]
+// [fsi: ------------------------ ]
+
+(**
+When the patient signs evolve from first pain and then pain,
+but also liverfailure, at first the treatment is paracetamol,
+but given liverfailure paracetamol is removed to be replaced
+with morfine.
+*)
 
 // First the patient has pain, then also liver failure
 // Evaluate pain protocol for patient with pain but also liver failure
 // Expect: first paracatamol, then only morfine
 patsigns
 |> addPatientSign pain
-|> (fun signs -> patTreatm |> evaluateProtocol painProtocol signs)
-|> (fun pt -> pt |> printTreatment; pt)
-|> evaluateProtocol painProtocol (patsigns
+|> (fun signs -> patTreatm |> evaluate painProtocol signs)
+|> (fun pt -> pt |> print; pt)
+|> evaluate painProtocol (patsigns
         |> addPatientSign pain
         |> addPatientSign lvf)
-|> printTreatment
+|> print
+//
+// [fsi: Conditions met: true, TargetMet: false ]
+// [fsi: For treatment: Order "paracetamol" ]
+// [fsi: ------------------------ ]
+// [fsi:  ]
+// [fsi: Treatment for: Test Patient ]
+// [fsi: - paracetamol ]
+// [fsi:  ]
+// [fsi: ------------------------ ]
+// [fsi: Conditions met: false, TargetMet: false ]
+// [fsi: For treatment: Order "paracetamol" ]
+// [fsi: Conditions met: true, TargetMet: false ]
+// [fsi: For treatment: Order "morfine" ]
+// [fsi: ------------------------ ]
+// [fsi:  ]
+// [fsi: Treatment for: Test Patient ]
+// [fsi: - morfine ]
+// [fsi:  ]
+// [fsi: ------------------------ ]
+
+(**
+A patient that has a low blood pressure, but is evaluated by
+the pain protocol, will not receive treatment.
+*)
 
 // Evaluate pain protocol for patient with low blood pressure
 // Expect: No treatment
 patsigns
 |> addPatientSign bp40
-|> (fun signs -> patTreatm |> evaluateProtocol painProtocol signs)
-|> printTreatment
+|> (fun signs -> patTreatm |> evaluate painProtocol signs)
+|> print
+//
+// [fsi: Conditions met: true, TargetMet: true ]
+// [fsi: For treatment: Order "paracetamol" ]
+// [fsi: Conditions met: true, TargetMet: true ]
+// [fsi: For treatment: Order "morfine" ]
+// [fsi: ------------------------ ]
+// [fsi:  ]
+// [fsi: Treatment for: Test Patient ]
+// [fsi:  ]
+// [fsi: ------------------------ ]
+
+(**
+If that patient not only has blood pressure, but also has
+pain, then, given the pain protocol, paracetamol is added
+to the treatment, but blood pressure remains untreated.
+*)
 
 // Evaluate pain protocol for patient with pain and low blood pressure
 // Expect: paracetamol
 patsigns
 |> addPatientSign bp40
 |> addPatientSign pain
-|> (fun signs -> patTreatm |> evaluateProtocol painProtocol signs)
-|> printTreatment
+|> (fun signs -> patTreatm |> evaluate painProtocol signs)
+|> print
+//
+// [fsi: Conditions met: true, TargetMet: false ]
+// [fsi: For treatment: Order "paracetamol" ]
+// [fsi: ------------------------ ]
+// [fsi:  ]
+// [fsi: Treatment for: Test Patient ]
+// [fsi: - paracetamol ]
+// [fsi:  ]
+// [fsi: ------------------------ ]
+
+(**
+When both the pain and the blood pressure protocol are
+evaluated, then the patient will receive both paracetamol
+and dopamine.
+*)
 
 // Evaluate pain protocol and blood pressure protocol
 // for patient with pain and low blood pressure
@@ -557,9 +769,26 @@ patsigns
 |> addPatientSign pain
 |> (fun signs ->
         patTreatm
-        |> evaluateProtocol painProtocol signs
-        |> evaluateProtocol bpProtocol signs)
-|> printTreatment
+        |> evaluate painProtocol signs
+        |> evaluate bpProtocol signs)
+|> print
+//
+// [fsi: Conditions met: true, TargetMet: false ]
+// [fsi: For treatment: Order "paracetamol" ]
+// [fsi: Conditions met: true, TargetMet: false ]
+// [fsi: For treatment: Order "dopamine" ]
+// [fsi: ------------------------ ]
+// [fsi:  ]
+// [fsi: Treatment for: Test Patient ]
+// [fsi: - dopamine ]
+// [fsi: - paracetamol ]
+// [fsi:  ]
+// [fsi: ------------------------ ]
+
+(**
+The patient with low blood pressure but no central venous
+line will not proceed to noradrenaline in the next evaluation.
+*)
 
 // Evaluate a blood pressure protocol for a patient
 // with low blood pressure, which still has low blood
@@ -570,10 +799,34 @@ patsigns
 |> addPatientSign bp40
 |> (fun signs ->
         patTreatm
-        |> evaluateProtocol bpProtocol signs
-        |> (fun pt -> pt |> printTreatment; pt)
-        |> evaluateProtocol bpProtocol signs
-        |> printTreatment)
+        |> evaluate bpProtocol signs
+        |> (fun pt -> pt |> print; pt)
+        |> evaluate bpProtocol signs
+        |> print)
+//
+// [fsi: Conditions met: true, TargetMet: false ]
+// [fsi: For treatment: Order "dopamine" ]
+// [fsi: ------------------------ ]
+// [fsi:  ]
+// [fsi: Treatment for: Test Patient ]
+// [fsi: - dopamine ]
+// [fsi:  ]
+// [fsi: ------------------------ ]
+// [fsi: Conditions met: true, TargetMet: false ]
+// [fsi: For treatment: Order "dopamine" ]
+// [fsi: Conditions met: false, TargetMet: false ]
+// [fsi: For treatment: Order "noradrenaline" ]
+// [fsi: ------------------------ ]
+// [fsi:  ]
+// [fsi: Treatment for: Test Patient ]
+// [fsi: - dopamine ]
+// [fsi:  ]
+// [fsi: ------------------------ ]
+
+(**
+Once the patient has a central venous line, noradrenaline
+can be added to the treatment.
+*)
 
 // Now the patient has a central venous line
 // Expect: dopamine, then dopamine and noradrenalin
@@ -582,7 +835,27 @@ patsigns
 |> addPatientSign cvl
 |> (fun signs ->
         patTreatm
-        |> evaluateProtocol bpProtocol signs
-        |> (fun pt -> pt |> printTreatment; pt)
-        |> evaluateProtocol bpProtocol signs
-        |> printTreatment)
+        |> evaluate bpProtocol signs
+        |> (fun pt -> pt |> print; pt)
+        |> evaluate bpProtocol signs
+        |> print)
+//
+// [fsi: Conditions met: true, TargetMet: false ]
+// [fsi: For treatment: Order "dopamine" ]
+// [fsi: ------------------------ ]
+// [fsi:  ]
+// [fsi: Treatment for: Test Patient ]
+// [fsi: - dopamine ]
+// [fsi:  ]
+// [fsi: ------------------------ ]
+// [fsi: Conditions met: true, TargetMet: false ]
+// [fsi: For treatment: Order "dopamine" ]
+// [fsi: Conditions met: true, TargetMet: false ]
+// [fsi: For treatment: Order "noradrenaline" ]
+// [fsi: ------------------------ ]
+// [fsi:  ]
+// [fsi: Treatment for: Test Patient ]
+// [fsi: - noradrenaline ]
+// [fsi: - dopamine ]
+// [fsi:  ]
+// [fsi: ------------------------ ]
